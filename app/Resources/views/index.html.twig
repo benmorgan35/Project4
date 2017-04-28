@@ -1,0 +1,103 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+Accueil - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+
+<div class="intro">
+    {{ include ('::_introduction.html.twig') }}
+</div>
+
+
+<div class="row">
+    <div id="page" class="col-sm-8">
+
+        <div class="etape">
+            <h2>1. Choix du/des billet(s)</h2>
+        </div>
+
+
+        <div class="sousetape">
+            <p>Choisissez un jour de visite</p>
+        </div>
+
+
+        {{ form_start(form, {'attr': {'class': 'form-horizontal' }}) }}
+        {{ form_errors(form) }}
+
+        <div class="form-group">
+        <div class="formulaire">
+
+                {{ form_label(form.dateVisit, "Jour de visite") }}
+                {{ form_errors(form.dateVisit) }}
+                {{ form_widget(form.dateVisit, {'attr': {'placeholder': 'Sélectionner une date', 'readonly': 'readonly'}}) }}
+
+        </div>
+        </div>
+
+
+        <div class="sousetape">
+            <p>Choisissez un type de billet (journée complète ou demi-journée)</p>
+        </div>
+
+        <div class="form-group">
+        <div class="formulaire">
+            {{ form_label(form.ticketType, "Type de billet") }}
+            {{ form_errors(form.ticketType) }}
+            {{ form_widget(form.ticketType) }}
+
+        </div>
+        </div>
+
+        <div class="sousetape">
+            <p>Choisissez un nombre de billet(s)<br />
+            Au-delà de 10 billets, Merci de contacter le musée.</p>
+        </div>
+
+        <div class="form-group">
+        <div class="formulaire">
+            {{ form_label(form.ticketsNumber, "Nombre de billet(s)") }}
+            {{ form_errors(form.ticketsNumber) }}
+            {{ form_widget(form.ticketsNumber) }}
+        </div>
+        </div>
+
+
+        <div class="sousetape">
+            <p>
+                Vos billets vous seront adressés par mail. <br />
+                Veuillez indiquer une adresse mail valide.
+            </p>
+        </div>
+
+        <div class="form-group">
+        <div class="formulaire">
+            {{ form_label(form.email, "Adresse email") }}
+            {{ form_errors(form.email) }}
+            {{ form_widget(form.email) }}
+        </div>
+        </div>
+
+    {{ form_rest(form) }}
+
+        <div class="formulaire">
+            <input type="reset" value="Annuler" class="btn btn-default pull-left"/>
+            <input type="submit" value="Poursuivre" class="btn btn-default pull-right"/>
+        </div>
+
+
+        {{ form_end(form) }}
+
+
+    </div>
+
+    <div id="bandeau" class="col-sm-4">
+        {{ include ('::_information.html.twig') }}
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+    Coordonnées - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+
+
+    <div class="intro">
+        {{ include ('::_introduction.html.twig') }}
+    </div>
+
+    <div class="row">
+        <div id="page" class="col-md-8">
+
+            <div class="etape">
+                <h2>2. Coordonnées</h2>
+            </div>
+
+            <div class="sousetape">
+                <p>
+                    Les billets sont nominatifs.<br />
+                    Veuillez renseigner les informations demandées pour chaque bénéficiaire.
+                </p>
+                <p style="margin-left:40px;">
+                    <i>
+                        Jour de votre visite : {{ commande.dateVisit|date('d/m/Y') }}<br />
+                        Type de billet :
+                        {% if commande.ticketType %}
+                            Journée complète
+                        {% else %}
+                            Demi-journée
+                        {% endif %}
+                    <br />Nombre de billet(s): {{ commande.ticketsNumber }}</i>
+                </p>
+            </div>
+
+            {{ form_start(form, {'attr': {'class': 'form-horizontal' }}) }}
+            {{ form_errors(form) }}
+
+
+
+            <div class="formulaire">
+
+                <div class="form-group">
+                    {{ form_label(form.lastName, 'Nom') }}
+                    {{ form_errors(form.lastName) }}
+                    {{ form_widget(form.lastName) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.firstName, 'Prénom') }}
+                    {{ form_errors(form.firstName) }}
+                    {{ form_widget(form.firstName) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.nationality, 'Nationalité') }}
+                    {{ form_errors(form.nationality) }}
+                    {{ form_widget(form.nationality) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.birthDate, 'Date de naissance') }}
+                    {{ form_errors(form.birthDate) }}
+                    {{ form_widget(form.birthDate) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.reducedPrice, 'tarif réduit') }}
+                    {{ form_errors(form.reducedPrice) }}
+                    {{ form_widget(form.reducedPrice) }}
+                </div>
+
+
+
+            {{ form_rest(form) }}
+
+                <input type="reset" value="Retour" class="btn btn-default pull-left"/>
+                <input type="submit" value="Valider" class="btn btn-default pull-right"/>
+        </div>
+             {{ form_end(form) }}
+
+
+
+        </div>
+
+        <div id="bandeau" class="col-md-4">
+            {{ include ('::_information.html.twig') }}
+        </div>
+
+    </div>
+
+{% endblock %}
