@@ -2,7 +2,9 @@
 
 namespace AppBundle\Form;
 
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -13,7 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CommandeType extends AbstractType
+class CommandeTicketsType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -22,39 +24,9 @@ class CommandeType extends AbstractType
     {
         $builder
 
-            ->add('dateVisit', DateType::class, array(
-                'widget' => 'single_text',
-                'html5' => false,
-                'format' => 'dd/MM/yyyy',
-                'attr' => ['class' => 'datepicker'],
-                'placeholder' => 'Sélectionnez votre date de visite',
-            ))
-            ->add('ticketType', ChoiceType::class, array(
-                'choices' => array (
-                    'Journée complète' => true,
-                    'Demi-journée' => false,
-
-                ),
-                'expanded' => true,
-                'multiple' => false,
-
-            ))
-            ->add('ticketsNumber', ChoiceType::class, array(
-                'choices' => array(
-
-                    '1' => 1,
-                    '2' => 2,
-                    '3' => 3,
-                    '4' => 4,
-                    '5' => 5,
-                    '6' => 6,
-                    '7' => 7,
-                    '8' => 8,
-                    '9' => 9,
-                    '10' => 10,
-                )
-            ))
-            ->add('email', EmailType::class);
+            ->add('tickets', CollectionType::class, array(
+                'entry_type' => TicketType::class,
+            ));
 
 
     }

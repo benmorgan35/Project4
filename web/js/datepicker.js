@@ -20,16 +20,15 @@ $.datepicker.setDefaults($.datepicker.regional['fr']);
 // Désactivation de certains jours
 function disableDays(date) {
 
-    var m = date.getMonth();
     var d = date.getDay();
     var curDate = date.getDate();
+    var m = date.getMonth();
 
-    //le mardi
-    if (d == 2)
+    //Tous les mardis et les dimanche
+    if (d == 2  || d == 0)
     {
         return [false] ;
     }
-
     //le 1er novembre et le 1er mai
     else if (curDate == 1 && (m == 10 || m == 4))
     {
@@ -51,35 +50,34 @@ var year   = now.getFullYear();
 var month    = ('0'+(now.getMonth() + 1 )).slice(-2);
 var day    = ('0'+now.getDate()   ).slice(-2);
 var hour   = ('0'+now.getHours()  ).slice(-2);
-
-var today = day + "/" + month + "/" + year;
-
-var ticketOptionDelete = $(".typeTicket option[value='1']");
-var formSelect = $(".typeTicket option[value='0']");
-
 var timeCond = now.getHours() >= 18;
+var dateActuelle = day + "/" + month + "/" + year;
 
 $(function() {
 
-    $(".datepicker").datepicker({
+    $("#calendar").datepicker(
+    {
+        inline: true,
+        altField: '#appbundle_commande_dateVisit',
         minDate: timeCond ? 1 : 0,
-        changeMonth: false,
-        changeYear: false,
         beforeShowDay: disableDays,
         // ON RECUP LA DATE CHOISIE POUR ENLEVER LA JOUR. COMPL. SI = JOUR MEME et 14h +
-        onSelect: function(dateText, inst){
+        onSelect: function(dateText, inst)
+        {
             $('#date').val(dateText);
 
-            if (dateText == today && hour >= 14 && hour < 24){
+            if (dateText == dateActuelle && hour >= 14 && hour < 24)
+            {
                 ticketOptionDelete.detach();
             }
-            else{
+            else
+            {
                 ticketOptionDelete.insertBefore(formSelect);
             }
         }
     });
-});
 
+});
 
 
 

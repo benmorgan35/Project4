@@ -12,8 +12,8 @@ Accueil - {{ parent() }}
 </div>
 
 
-<div class="row">
-    <div id="page" class="col-sm-8">
+<div class="row" id="rangee">
+    <div id="colonne" class="col-sm-8">
 
         <div class="etape">
             <h2>1. Choix du/des billet(s)</h2>
@@ -28,13 +28,15 @@ Accueil - {{ parent() }}
         {{ form_start(form, {'attr': {'class': 'form-horizontal' }}) }}
         {{ form_errors(form) }}
 
+        <div class="fondblanc">
         <div class="form-group">
         <div class="formulaire">
 
                 {{ form_label(form.dateVisit, "Jour de visite") }}
                 {{ form_errors(form.dateVisit) }}
-                {{ form_widget(form.dateVisit, {'attr': {'placeholder': 'Sélectionner une date', 'readonly': 'readonly'}}) }}
-
+                {{ form_widget(form.dateVisit, {'attr':{'placeholder':'Sélectionner une date', 'readonly': 'readonly'}}) }}
+           <div id="calendar"> </div>
+        </div>
         </div>
         </div>
 
@@ -43,12 +45,13 @@ Accueil - {{ parent() }}
             <p>Choisissez un type de billet (journée complète ou demi-journée)</p>
         </div>
 
+        <div class="fondblanc">
         <div class="form-group">
         <div class="formulaire">
             {{ form_label(form.ticketType, "Type de billet") }}
             {{ form_errors(form.ticketType) }}
             {{ form_widget(form.ticketType) }}
-
+        </div>
         </div>
         </div>
 
@@ -57,11 +60,13 @@ Accueil - {{ parent() }}
             Au-delà de 10 billets, Merci de contacter le musée.</p>
         </div>
 
-        <div class="form-group">
-        <div class="formulaire">
+        <div class="fondblanc">
+            <div class="form-group">
+                <div class="formulaire">
             {{ form_label(form.ticketsNumber, "Nombre de billet(s)") }}
-            {{ form_errors(form.ticketsNumber) }}
             {{ form_widget(form.ticketsNumber) }}
+            {{ form_errors(form.ticketsNumber) }}
+        </div>
         </div>
         </div>
 
@@ -73,30 +78,32 @@ Accueil - {{ parent() }}
             </p>
         </div>
 
-        <div class="form-group">
-        <div class="formulaire">
-            {{ form_label(form.email, "Adresse email") }}
-            {{ form_errors(form.email) }}
-            {{ form_widget(form.email) }}
-        </div>
-        </div>
-
-    {{ form_rest(form) }}
-
-        <div class="formulaire">
-            <input type="reset" value="Annuler" class="btn btn-default pull-left"/>
-            <input type="submit" value="Poursuivre" class="btn btn-default pull-right"/>
+        <div class="fondblanc">
+            <div class="form-group">
+                <div class="formulaire">
+                    {{ form_label(form.email, "Adresse email") }}
+                    {{ form_widget(form.email) }}
+                    {{ form_errors(form.email) }}
+                </div>
+           </div>
         </div>
 
+        <div class="fondblanc">
+            <div class="form-group">
+                <div class="formulaire">
+                    <input type="reset" value="Annuler" class="btn btn-default pull-left"/>
+                    <input type="submit" value="Poursuivre" class="btn btn-default pull-right"/>
+                </div>
+            </div>
+        </div>
 
         {{ form_end(form) }}
 
-
     </div>
-
-    <div id="bandeau" class="col-sm-4">
+    <div id="colonne" class="col-sm-4">
         {{ include ('::_information.html.twig') }}
     </div>
+
 
 </div>
 

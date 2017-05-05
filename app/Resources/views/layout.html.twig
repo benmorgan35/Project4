@@ -20,19 +20,17 @@
 <body>
 {% block header %}
 
-<div class="container">
+<div class="container" id="layout">
 
     <header>
 
         <nav class="navbar navbar-inverse" role="navigation">
 
             <div class="navbar-header">
-<ul>
-                <li>   <a class="navbar-brand" href="http://www.louvre.fr/" target="_blank"><img
-                                src="{{ asset('images/logo.jpg') }}" title="Site du Louvre" alt="Logo" id="logo"></a></li>
-<li>Billetterie du Louvre</li>
 
-</ul>
+                <p><img src="{{ asset('images/logo.jpg') }}" title="Site du Louvre" alt="Logo" id="logo"></p>
+
+
                 <button type="button" class="navbar-toggle"
                         data-toggle="collapse"
                         data-target="#bs-example-navbar-collapse-1">

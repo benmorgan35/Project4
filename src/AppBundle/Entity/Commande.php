@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Validator\LimitTickets;
 
 /**
  * Commande
@@ -14,7 +16,10 @@ class Commande
 {
 
     /**
+     * @var Ticket[]
+     *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket", mappedBy="commande", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $tickets;
 
@@ -39,6 +44,9 @@ class Commande
      * @var \DateTime
      *
      * @ORM\Column(name="dateVisit", type="date")
+     * @Assert\NotNull(message="Veuillez sélectionner une date")
+     * @Assert\Date()
+     * @LimitTickets()
      */
     private $dateVisit;
 
@@ -46,6 +54,7 @@ class Commande
      * @var bool
      *
      * @ORM\Column(name="ticketType", type="boolean")
+     * @Assert\Choice(choices ={"Journée complète", "Demi-journée"}, message="Veuillez choisir un type de ticket")
      */
     private $ticketType;
 
@@ -53,6 +62,8 @@ class Commande
      * @var int
      *
      * @ORM\Column(name="ticketsNumber", type="integer")
+     * @Assert\Range(max=10)
+     * contrainte 1000 billets
      */
     private $ticketsNumber;
 
@@ -60,6 +71,8 @@ class Commande
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\NotBlank(message="ddd")
+     * @Assert\Email(message="Veuillez saisir une adresse électronique valide")
      */
     private $email;
 

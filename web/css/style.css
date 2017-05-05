@@ -1,7 +1,7 @@
 body {
     background-image: url(../images/imgbackground.jpg);
     background-repeat:no-repeat center fixed;
-background-color: black;
+    background-color: black;
     background-size: cover; /* version standardisée */
     font-family: Arial,Verdana,Helvetica,sans-serif;
     line-height: 1.5em;
@@ -24,7 +24,12 @@ a{
     font-size: 1.0em;
 }
 
+hr{
+    border-color: #ccc;
+}
 
+
+/* --------------------------------------------------- */
 
 .ancre{
     display: none;
@@ -37,58 +42,75 @@ a{
 }
 
 
-.container{
-    background: white;
-    margin-left: auto;
-    margin-right: auto;
+.checkbox label, .radio label {
+    font-weight: 700;
+}
 
-    padding: 0;
-    width: 768px;
+.control-label{
+    color: grey;
+    font-weight: 400;
+}
+
+.commande{
+    margin-left: 50px;
+    padding-top: 50px;
+    padding-bottom: 10px;
 }
 
 .etape{
-    background-color: #c82d00;
     color: white;
     padding-bottom: 20px;
     padding-top: 5px;
     padding-left: 20px;
-    margin-right: -30px;
 }
+
+.fondblanc{
+    background-color: white;
+}
+
+.formcoordonnees{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 0;
+    padding-top: 20px;
+}
+
 .formulaire{
-    margin-left: 100px;
-    margin-bottom: 25px;
-    margin-top: 25px;
-    margin-right: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 30px;
+    padding-bottom: 30px;
 }
 
-.sousetape{
-    background-color: #4e4e4e;
-    color: white;
-    padding-bottom: 10px;
-    padding-top: 15px;
-    padding-left: 20px;
-    margin-right: -30px;
-
+.form-horizontal .form-group {
+    margin-right: 0px;
+    margin-left: 0px;
 }
 
-.sousetape p{
-
-    color: white;
-
-
+.form-group {
+    margin-bottom: 0px;
 }
 
-
+.help-block ul li {
+    color: #c82d00;
+    font-size: 12px;
+}
 
 .informations{
-    background-color: #c82d00;
     color: white;
     padding: 20px;
-    padding-bottom: 300px;
 }
 
 .intro{
     padding: 20px;
+    background-color: white;
+}
+
+.navbar {
+    border-radius: 0;
+    position: relative;
+    min-height: 110px;
+    margin-bottom: 0;
 }
 
 .navbar-fixed-top, .navbar-fixed-bottom {
@@ -98,51 +120,74 @@ a{
     z-index: 1030;
 }
 
+.sousetape{
+    background-color: #4e4e4e;
+    color: white;
+    padding-bottom: 10px;
+    padding-top: 15px;
+    padding-left: 20px;
+}
 
-
-#frflag{
-    width: 60px;
-    display: inline-block;
+.sousetape p{
+    color: white;
 }
 
 
+/* --------------------------------------------------- */
 
+
+#appbundle_commande_dateVisit{
+    width: 170px;
+}
+
+#appbundle_commande_ticketsNumber{
+    width: 60px;
+}
+
+
+#appbundle_commande_email{
+    width: 250px;
+}
+
+.btn-primary{
+    background-color: #222;
+    border-color: #222;
+    color: lightgrey;
+}
+
+.btn-primary:hover{
+    background-color: #4a4a4a;
+    border-color: #4a4a4a;
+}
+
+#calendar{
+    margin-top: 30px;
+}
+
+#center{
+    text-align: center;
+}
+
+#right{
+    text-align: right;
+}
+
+
+#colonne{
+    margin: 0;
+    padding-right: 0;
+    padding-left: 0;
+}
 
 #enflag{
     width: 60px;
-     display: inline-block;
-}
-
-#home{
-    width: 60px;
     display: inline-block;
-
 }
 
-
-#info a {
-    text-align: right;
-    color: #6E6E6E;
+#forminput{
+    padding-left: 10px;
+    padding-right: 10px;
 }
-
-#logo{
-    width: 120px;
-     display: inline-block;
-}
-
-/* barre de navigation */
-
-.navbar {
-    border-radius: 0;
-    position: relative;
-    min-height: 110px;
-    margin-bottom: 0;
-
-}
-
-
-
-
 
 #footer
 {
@@ -155,10 +200,72 @@ a{
 
 #footer p  {
     color : white;
-}#footer a  {
-    color : grey;
 }
 
+#footer a  {
+     color : grey;
+}
+
+#frflag{
+    width: 60px;
+    display: inline-block;
+}
+
+#home{
+    width: 60px;
+    display: inline-block;
+}
+
+#info a {
+    text-align: right;
+    color: #6E6E6E;
+}
+
+#layout{
+    background: #c82d00;;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    width: 768px;
+}
+
+#logo{
+    width: 120px;
+     display: inline-block;
+    margin-left : 20px;
+    margin-top: 15px;
+
+}
+
+#rangee{
+    margin: 0;
+    padding: 0;
+}
+
+#recap{
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: 20;
+}
+
+#recap th{
+    background: #222;
+    color: white;
+    font-weight: 400;
+}
+
+#recap td{
+    background: lightgrey;
+    color: #4d4d4d;
+}
+
+#ticket{
+    font-size: 1.1em;
+    margin-left: 10px;
+    font-weight: 700;
+    color: #4e4e4e;
+}
 
 
 
@@ -170,27 +277,30 @@ a{
         display:block;
     }
 
-
-    .container{
-        width: 100%;
+    #forminput{
+        padding-left: 50px;
+        padding-right: 50px;
     }
 
-
-    .etape{
-        margin-right: 0px;
+    .formbirthday .form-control{
+    width: 75px;
+    font-size: 1.0em;
+    display: inline-block;
     }
 
-    .sousetape{
-        margin-right: 0px;
-
+    .formcoordonnees {
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .informations{
-        background-color: #c82d00;
         color: white;
-        padding: 20px;
 
+        padding-left: 40px;
+        padding-right: 40px;
     }
-
+    #layout{
+    width: 100%;
+    }
 
 }

@@ -26,17 +26,16 @@ class CommandeType extends AbstractType
                 'widget' => 'single_text',
                 'html5' => false,
                 'format' => 'dd/MM/yyyy',
-                'attr' =>array('class' => 'datepicker'),
-                'placeholder' => 'Sélectionnez votre date de visite',
             ))
+
             ->add('ticketType', ChoiceType::class, array(
                 'choices' => array (
                     'Journée complète' => true,
                     'Demi-journée' => false,
-
                 ),
                 'expanded' => true,
                 'multiple' => false,
+                'data' => true,
 
             ))
             ->add('ticketsNumber', ChoiceType::class, array(
@@ -54,8 +53,8 @@ class CommandeType extends AbstractType
                     '10' => 10,
                 )
             ))
-            ->add('email', EmailType::class);
 
+            ->add('email', EmailType::class);
 
     }
     

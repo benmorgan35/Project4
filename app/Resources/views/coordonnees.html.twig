@@ -12,8 +12,11 @@
         {{ include ('::_introduction.html.twig') }}
     </div>
 
-    <div class="row">
-        <div id="page" class="col-md-8">
+    {# I. début row page------------------------------------------------------------------------- #}
+    <div class="row" id="rangee">
+
+        {# I.1 début col row page 1/2................................................................. #}
+        <div id="colonne" class="col-sm-8">
 
             <div class="etape">
                 <h2>2. Coordonnées</h2>
@@ -21,76 +24,151 @@
 
             <div class="sousetape">
                 <p>
-                    Les billets sont nominatifs.<br />
+                    Les billets sont nominatifs.<br/>
                     Veuillez renseigner les informations demandées pour chaque bénéficiaire.
                 </p>
                 <p style="margin-left:40px;">
                     <i>
-                        Jour de votre visite : {{ commande.dateVisit|date('d/m/Y') }}<br />
+                        Jour de votre visite : {{ commande.dateVisit|date('d/m/Y') }}<br/>
                         Type de billet :
                         {% if commande.ticketType %}
                             Journée complète
                         {% else %}
                             Demi-journée
                         {% endif %}
-                    <br />Nombre de billet(s): {{ commande.ticketsNumber }}</i>
+                        <br/>Nombre de billet(s): {{ commande.ticketsNumber }}
+                    </i>
                 </p>
             </div>
 
             {{ form_start(form, {'attr': {'class': 'form-horizontal' }}) }}
             {{ form_errors(form) }}
 
+            <div class="fondblanc">
+                <div class="formcoordonnees">
+
+                    {% for formTicket in form.tickets %}
 
 
-            <div class="formulaire">
+                        {# I.1.a. début row 1 formulaire//////////////////////////////////////////////// #}
+                        <div class="row" id="rangee">
+                            {# I.1.a.1 début col row 1 formulaire 1/2............................... #}
 
-                <div class="form-group">
-                    {{ form_label(form.lastName, 'Nom') }}
-                    {{ form_errors(form.lastName) }}
-                    {{ form_widget(form.lastName) }}
+                            <h3 id="ticket">&bull; Ticket #{{ loop.index }}</h3>
+
+                            <div class="col-sm-6" id="colonne">
+
+                                <div class="form-group" id="forminput">
+                                    {{ form_label(formTicket.lastName, 'Nom') }}
+
+                                    {{ form_widget(formTicket.lastName) }}
+                                    {{ form_errors(formTicket.lastName) }}
+                                </div>
+
+                            </div>
+                            {# I.1.a.1 fin col row 1 formulaire 1/2............................... #}
+
+                            {# I.1.a.2 debut col row 1 formulaire 2/2............................... #}
+                            <div class="col-sm-6" id="colonne">
+
+                                <div class="form-group" id="forminput">
+                                    {{ form_label(formTicket.firstName, 'Prénom') }}
+
+                                    {{ form_widget(formTicket.firstName) }}
+                                    {{ form_errors(formTicket.firstName) }}
+                                </div>
+
+                            </div>
+                            {# I.1.a.2 fin col row 1 formulaire 2/2............................... #}
+
+                        </div>
+                        {# I.1.a fin row 1 formulaire//////////////////////////////////////////////// #}
+
+                        {# I.1.b début row 2 formulaire//////////////////////////////////////////////// #}
+                        <div class="row" id="rangee">
+
+                            {# I.1.b.1 début col row 2 formulaire 1/2............................... #}
+                            <div class="col-sm-6" id="colonne">
+
+                                <div class="form-group formbirthday" id="forminput">
+                                    {{ form_label(formTicket.birthDate, 'Date de naissance') }}
+
+                                    {{ form_widget(formTicket.birthDate) }}
+                                    {{ form_errors(formTicket.birthDate) }}
+                                </div>
+
+                            </div>
+                            {# I.1.b.1 fin col row 2 formulaire 1/2............................... #}
+
+                            {# I.1.b.2 debut col row 2 formulaire 1/2............................... #}
+                            <div class="col-sm-6" id="colonne">
+
+                                <div class="form-group" id="forminput">
+                                    {{ form_label(formTicket.nationality, 'Nationalité') }}
+
+                                    {{ form_widget(formTicket.nationality) }}
+                                    {{ form_errors(formTicket.nationality) }}
+                                </div>
+
+                            </div>
+                            {# I.1.b.2 fin col row 2 formulaire 3/3............................... #}
+
+                        </div>
+                        {# fin row 2 formulaire//////////////////////////////////////////////// #}
+
+                        {# I.1.c. début row 3 formulaire//////////////////////////////////////////////// #}
+                        <div class="row" id="rangee" >
+
+                            {# I.1.c.1 début col row 2 formulaire 1/1............................... #}
+                            <div class="col-sm-12" id="colonne">
+
+                                <div class="form-group" id="forminput" style="float:right">
+                                    {{ form_label(formTicket.reducedPrice, 'tarif réduit') }}
+
+                                    {{ form_widget(formTicket.reducedPrice) }}
+                                    {{ form_errors(formTicket.reducedPrice) }}
+                                </div>
+
+                            </div>
+                            {# I.1.c.1 fin col row 2 formulaire 1/1............................... #}
+
+                        </div>
+                        {# I.1.c. fin row 3 formulaire//////////////////////////////////////////////// #}
+                        <hr />
+
+                    {% endfor %}
+
+                    {{ form_rest(form) }}
+
+                    <div class="fondblanc">
+                        <div class="form-group" id="forminput">
+                            <div class="formcoordonnees">
+                                <input type="reset" value="Retour" class="btn btn-default pull-left"/>
+                                <input type="submit" value="Valider" class="btn btn-default pull-right"/>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+            </div>
 
-                <div class="form-group">
-                    {{ form_label(form.firstName, 'Prénom') }}
-                    {{ form_errors(form.firstName) }}
-                    {{ form_widget(form.firstName) }}
-                </div>
-
-                <div class="form-group">
-                    {{ form_label(form.nationality, 'Nationalité') }}
-                    {{ form_errors(form.nationality) }}
-                    {{ form_widget(form.nationality) }}
-                </div>
-
-                <div class="form-group">
-                    {{ form_label(form.birthDate, 'Date de naissance') }}
-                    {{ form_errors(form.birthDate) }}
-                    {{ form_widget(form.birthDate) }}
-                </div>
-
-                <div class="form-group">
-                    {{ form_label(form.reducedPrice, 'tarif réduit') }}
-                    {{ form_errors(form.reducedPrice) }}
-                    {{ form_widget(form.reducedPrice) }}
-                </div>
+            {{ form_end(form) }}
 
 
-
-            {{ form_rest(form) }}
-
-                <input type="reset" value="Retour" class="btn btn-default pull-left"/>
-                <input type="submit" value="Valider" class="btn btn-default pull-right"/>
         </div>
-             {{ form_end(form) }}
+        {# I.1  fin col row page 2/2................................................................. #}
 
-
-
-        </div>
-
-        <div id="bandeau" class="col-md-4">
+        {# I.2 début col row page 2/2................................................................. #}
+        <div class="col-sm-4"  id="colonne">
             {{ include ('::_information.html.twig') }}
         </div>
+        {# I.2 fin col row page 2/2................................................................. #}
 
     </div>
+    {# I. fin row page------------------------------------------------------------------- #}
+
+
+
+
 
 {% endblock %}
