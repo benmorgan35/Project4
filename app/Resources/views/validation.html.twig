@@ -1,0 +1,50 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+    Validation - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+
+
+    <div class="enteteerreur"></div>
+    {# I. début row 1------------------------------------------------------------------------- #}
+    <div class="row" id="rangee">
+
+        {# I.1 début col row page 1/2................................................................. #}
+        <div id="colonne" class="col-sm-12">
+
+            <div class="etape">
+                <h2>Validation de votre commmande</h2>
+
+            </div>
+
+            <div class="fondnoir">
+
+                <div class="erreur">
+                    <p style="color: forestgreen;">
+                        Félicitations ! Votre commande est validée.
+                    </p>
+                    <p>Vous recevrez prochainement votre/vos billet(s) par mail.</p>
+                    <p>
+                        Veuillez noter la référence de votre commande.<br />
+                        En cas de problème de réception de mail, contactez-nous au 00/00/00/00/00, muni de cette référence.
+                    </p>
+                    <p>Référene de votre commande : </p>
+                    <p>Nous vous invitons à revenir à la <a href="{{ path('homepage') }}">page d'accueil</a></p>
+
+                    <a class="btn btn-primary" href="{{ path('homepage') }}" role="button">Retour à la page d'accueil</a>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+{% endblock %}

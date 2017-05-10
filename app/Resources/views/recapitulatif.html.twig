@@ -39,38 +39,53 @@
                     <p>Nombre de billet(s): {{ commande.ticketsNumber }}</p>
                 </div>
 
+                <h3 id="beneficiaires">Bénéficiaire(s)</h3>
+
                 <div class="table-responsive" id="recap">
-                <table class="table">
+                <table class="table recap">
                     <thead>
                     <tr>
                         <th id="center">Ticket</th>
                         <th>Nom</th>
                         <th>Prénom</th>
                         <th>Date de naissance</th>
-                        <th id="center">Tarif réduit *</th>
+                        <th>Tarif réduit *</th>
                         <th id="center">Prix du billet</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for ticket in commande.tickets %}
                     <tr>
-                        <td id="center">{{ loop.index }}</td>
-                        <td>{{ ticket.lastName }}</td>
-                        <td>{{ ticket.firstName }}</td>
-                        <td>{{ ticket.birthDate|date('d/m/Y') }}</td>
-                        <td id="center">
+                        <td id="center">Ticket {{ loop.index }}</td>
+                        <td><div class="champ"> Nom : </div>{{ ticket.lastName }}</td>
+                        <td><div class="champ">Prénom :  </div>{{ ticket.firstName }}</td>
+                        <td><div class="champ">Né(e) le </div>{{ ticket.birthDate|date('d/m/Y') }}</td>
+                        <td>
                             {% if ticket.reducedPrice == true %}
-                                &#10003;
+                                Tarif réduit
+                             {% else %}
+                                Plein tarif
                             {% endif %}
                         </td>
-                        <td id="right">{{ ticket.price }} €</td>
+                        <td id="right"><div class="champ">Montant : </div>{{ ticket.price }} €</td>
                     </tr>
                      {% endfor %}
 
                     </tbody>
 
                 </table>
-                    <p><i>(*) Un justificatif sera demandé à l'entrée du Musée pour les tarifs réduits.</i></p>
+
+
+                <p id="total">Montant total de votre commande : total € TTC</p>
+
+
+                    <form id="cgv">
+                        <input type="checkbox" id="cgv" required><label>J'ai lu et j'accepte les <a href="https://www.ticketlouvre.fr/louvre/b2c/index.cfm/CGV" target="_blank">conditions générales de vente.</a></label>
+                    </form>
+
+                    <a class="btn btn-primary pull-left" href="{{ path('homepage', {'id': commande.id}) }}" role="button">Retour Accueil</a>
+                    <a class="btn btn-primary pull-right" href="{{ path('paiement', {'id': commande.id}) }}" role="button">Payer</a>
+
             </div>
 
             </div>

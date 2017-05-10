@@ -22,7 +22,7 @@ class TicketRepository extends EntityRepository
                 ->where ('c.dateVisit = :dateVisit')
                 ->setParameter('dateVisit', $dateVisit)
                 ->getQuery()
-                ->getResult()
+                ->getSingleScalarResult()
            ;
         }
 

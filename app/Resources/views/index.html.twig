@@ -28,6 +28,7 @@ Accueil - {{ parent() }}
         {{ form_start(form, {'attr': {'class': 'form-horizontal' }}) }}
         {{ form_errors(form) }}
 
+
         <div class="fondblanc">
         <div class="form-group">
         <div class="formulaire">
@@ -82,7 +83,7 @@ Accueil - {{ parent() }}
             <div class="form-group">
                 <div class="formulaire">
                     {{ form_label(form.email, "Adresse email") }}
-                    {{ form_widget(form.email) }}
+                    {{ form_widget(form.email, {'attr':{'placeholder':'you@exemple.com'}}) }}
                     {{ form_errors(form.email) }}
                 </div>
            </div>
@@ -91,8 +92,8 @@ Accueil - {{ parent() }}
         <div class="fondblanc">
             <div class="form-group">
                 <div class="formulaire">
-                    <input type="reset" value="Annuler" class="btn btn-default pull-left"/>
-                    <input type="submit" value="Poursuivre" class="btn btn-default pull-right"/>
+                    <input type="reset" value="Annuler" class="btn btn-primary pull-left"/>
+                    <input type="submit" value="Poursuivre" class="btn btn-primary pull-right"/>
                 </div>
             </div>
         </div>

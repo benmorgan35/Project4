@@ -54,7 +54,6 @@ class Commande
      * @var bool
      *
      * @ORM\Column(name="ticketType", type="boolean")
-     * @Assert\Choice(choices ={"Journée complète", "Demi-journée"}, message="Veuillez choisir un type de ticket")
      */
     private $ticketType;
 
@@ -63,7 +62,6 @@ class Commande
      *
      * @ORM\Column(name="ticketsNumber", type="integer")
      * @Assert\Range(max=10)
-     * contrainte 1000 billets
      */
     private $ticketsNumber;
 
@@ -75,6 +73,14 @@ class Commande
      * @Assert\Email(message="Veuillez saisir une adresse électronique valide")
      */
     private $email;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="total", type="integer")
+     */
+    private $total;
+
 
     /**
      * @var string
@@ -193,6 +199,30 @@ class Commande
     public function getTicketsNumber()
     {
         return $this->ticketsNumber;
+    }
+
+    /**
+     * Set total
+     *
+     * @param integer $total
+     *
+     * @return Commande
+     */
+    public function setTotal($total)
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    /**
+     * Get total
+     *
+     * @return int
+     */
+    public function getTotal()
+    {
+        return $this->total;
     }
 
     /**

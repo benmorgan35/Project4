@@ -28,6 +28,9 @@ hr{
     border-color: #ccc;
 }
 
+.champ{
+    display: none;
+}
 
 /* --------------------------------------------------- */
 
@@ -57,6 +60,14 @@ hr{
     padding-bottom: 10px;
 }
 
+.erreur{
+    background-color: white;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    text-align: center;
+}
 .etape{
     color: white;
     padding-bottom: 20px;
@@ -66,6 +77,20 @@ hr{
 
 .fondblanc{
     background-color: white;
+}
+
+.enteteerreur{
+    background-color: white;
+    height: 120px;
+}
+.entetepaiement{
+    background-color: white;
+    height: 120px;
+}
+
+.fondnoir{
+    background-color: #262626;
+    padding: 70px;
 }
 
 .formcoordonnees{
@@ -120,6 +145,8 @@ hr{
     z-index: 1030;
 }
 
+
+
 .sousetape{
     background-color: #4e4e4e;
     color: white;
@@ -136,6 +163,8 @@ hr{
 /* --------------------------------------------------- */
 
 
+
+
 #appbundle_commande_dateVisit{
     width: 170px;
 }
@@ -149,6 +178,10 @@ hr{
     width: 250px;
 }
 
+#beneficiaires{
+    margin-left: 7%;
+    font-weight: 700;
+}
 .btn-primary{
     background-color: #222;
     border-color: #222;
@@ -166,6 +199,12 @@ hr{
 
 #center{
     text-align: center;
+}
+
+#cgv{
+    margin-right: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 #right{
@@ -243,10 +282,12 @@ hr{
 }
 
 #recap{
-    margin-right: 50px;
-    margin-left: 50px;
+    width: 86%;
+    margin-right: auto;
+    margin-left: auto;
     margin-top: 20px;
     margin-bottom: 20;
+    border: none;
 }
 
 #recap th{
@@ -265,6 +306,18 @@ hr{
     margin-left: 10px;
     font-weight: 700;
     color: #4e4e4e;
+}
+#total{
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 400;
+    background-color: #222;
+    width: 100%;
+    padding: 10px;
+    color: lightgrey;
+    margin-bottom: 30px;
+    margin-top: 30px;
+
 }
 
 
@@ -302,5 +355,33 @@ hr{
     #layout{
     width: 100%;
     }
+    .recap tr td{
+        float: left;
+        margin: auto;
+        width: 100%;
+
+    }
+    .recap tr th{
+        display: none;
+
+
+    }
+    #center{
+        text-align: left;
+        font-weight: 700;
+        padding-top: 10px;
+        color: lightgrey !important;
+        background-color: #222 !important;
+        margin-top: 10px !important;
+    }
+
+.table > tbody > tr > td{
+    padding-left: 30px;
+    padding-right : 20px;
+}
+
+.champ{
+    display: inline;
+}
 
 }

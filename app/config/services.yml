@@ -10,3 +10,9 @@ services:
             - '@doctrine.orm.entity_manager'
         tags:
             - { name:validator.constraint_validator, alias:app_limitTickets }
+
+    app.commande.manager:
+        class: AppBundle\Manager\CommandeManager
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@session'

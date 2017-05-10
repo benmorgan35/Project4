@@ -26,15 +26,13 @@ class LimitTicketsValidator extends ConstraintValidator
     public function validate($value, Constraint $constraint)
     {
         $ticketsNumber = $this->em->getRepository('AppBundle:Ticket')->getTicketsNumber($value);
-
-        if ($ticketsNumber >= 1000)
+        $commande = $this ->context->getObject();
+        if ($ticketsNumber + $commande->getTicketsNumber() >= 1000)
         {
-            /*
             $this->context
                 ->buildViolation($constraint->message)
                 ->addViolation();
             ;
-            */
         }
     }
 }

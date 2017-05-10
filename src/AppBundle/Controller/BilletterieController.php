@@ -6,7 +6,6 @@ use AppBundle\Entity\Commande;
 use AppBundle\Form\CommandeType;
 use AppBundle\Form\CommandeTicketsType;
 use AppBundle\Entity\Ticket;
-use AppBundle\AppBundle\Manager\Manager;
 use AppBundle\Form\TicketType;
 use AppBundle\Entity\Price;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -23,22 +22,18 @@ class BilletterieController extends Controller
      */
     public function indexAction(Request $request)
     {
-        /*
-        $session = $request->getSession();
-        $commande->$session->setCommande();
-        */
 
         $commande = new Commande();
+        /*
+        $commande = $this->get('app.commande.manager')->createCommande()
+        */
         $form = $this->createForm(CommandeType::class, $commande);
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($commande);
             $em->flush();
-/*
 
-*/
             return $this->redirectToRoute('coordonnees', array(
                 'id' => $commande->getId()
             ));
@@ -55,39 +50,30 @@ class BilletterieController extends Controller
      */
     public function coordonneesAction(Commande $commande, Request $request)
     {
-/*
-        $session = $request->getSession();
 
-*/
+        /* $commande = $session->get('commande'); */
 
         $nb = $commande->getTicketsNumber();
 
         for ($i = 1; $i <= $nb; $i++)
         {
-
             $commande->addTicket(new Ticket());
             /*
-            $ticketPrice = $this->getManager()->getTicketPrice();
-            $ticket->setPrice($ticketPrice);
+            $ticket = $this->get('app.commande.manager')->setTicketPrice();
+            $ticket = $this->setPrice($ticketPrice);
             */
         }
-
-
-
 
         $form = $this->createForm(CommandeTicketsType::class, $commande);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
-
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $em = $this->getDoctrine()->getManager();
-
-
             $em->flush();
 
             return $this->redirectToRoute('recapitulatif', array(
                 'id' => $commande->getId(),
-
             ));
         }
 
@@ -97,15 +83,27 @@ class BilletterieController extends Controller
         ));
 
 
-
         return $this->render('::coordonnees.html.twig', array('commande' => $commande));
     }
+
     /**
      * @Route("/recapitulatif/{id}", name="recapitulatif")
      * @Method({"GET"})
      */
     public function recapitulatifAction(Commande $commande)
     {
+        /* $commande = $session->get('commande'); */
         return $this->render('::recapitulatif.html.twig', array('commande' => $commande));
     }
+
+    /**
+     * @Route("/paiement/{id}", name="paiement")
+     * @Method({"GET"})
+     */
+    public function paiementAction(Commande $commande, Request $request)
+    {
+        /* $commande = $session->get('commande'); */
+        return $this->render('::paiement.html.twig', array('commande' => $commande));
+    }
+
 }

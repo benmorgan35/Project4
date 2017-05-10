@@ -13,18 +13,20 @@ $.datepicker.regional['fr'] = {
     firstDay: 1,
     isRTL: false,
     showMonthAfterYear: false,
+
+
     yearSuffix: ''};
 
 $.datepicker.setDefaults($.datepicker.regional['fr']);
 
-// Désactivation de certains jours
+// Désactivation de jours
 function disableDays(date) {
 
     var d = date.getDay();
     var curDate = date.getDate();
     var m = date.getMonth();
 
-    //Tous les mardis et les dimanche
+    //Tous les mardis et les dimanches
     if (d == 2  || d == 0)
     {
         return [false] ;
@@ -51,28 +53,40 @@ var month    = ('0'+(now.getMonth() + 1 )).slice(-2);
 var day    = ('0'+now.getDate()   ).slice(-2);
 var hour   = ('0'+now.getHours()  ).slice(-2);
 var timeCond = now.getHours() >= 18;
-var dateActuelle = day + "/" + month + "/" + year;
+var actualDate = day + "/" + month + "/" + year;
+
+var TicketTypeAllDay = $(".TicketType option[value='1']");
+var TicketTypeHalfDay = $(".TicketType option[value='0']");
+
+var myDate = null;
 
 $(function() {
+
+
+
 
     $("#calendar").datepicker(
     {
         inline: true,
         altField: '#appbundle_commande_dateVisit',
+        autoUpdateInput: false,
         minDate: timeCond ? 1 : 0,
         beforeShowDay: disableDays,
+
+
+
         // ON RECUP LA DATE CHOISIE POUR ENLEVER LA JOUR. COMPL. SI = JOUR MEME et 14h +
         onSelect: function(dateText, inst)
         {
             $('#date').val(dateText);
 
-            if (dateText == dateActuelle && hour >= 14 && hour < 24)
+            if (dateText == actualDate && hour >= 14 && hour < 24)
             {
-                ticketOptionDelete.detach();
+                TicketTypeAllDay.detach();
             }
             else
             {
-                ticketOptionDelete.insertBefore(formSelect);
+                ticketTypeAllDay.insertBefore(TicketTypeHalfDay);
             }
         }
     });
