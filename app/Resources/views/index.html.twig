@@ -34,9 +34,8 @@ Accueil - {{ parent() }}
         <div class="formulaire">
 
                 {{ form_label(form.dateVisit, "Jour de visite") }}
-                {{ form_errors(form.dateVisit) }}
                 {{ form_widget(form.dateVisit, {'attr':{'placeholder':'Sélectionner une date', 'readonly': 'readonly'}}) }}
-           <div id="calendar"> </div>
+                {{ form_errors(form.dateVisit) }}
         </div>
         </div>
         </div>
@@ -44,26 +43,29 @@ Accueil - {{ parent() }}
 
         <div class="sousetape">
             <p>Choisissez un type de billet (journée complète ou demi-journée)</p>
+
         </div>
 
         <div class="fondblanc">
+
+
         <div class="form-group">
-        <div class="formulaire">
+        <div class="formulaire"><p>Si vous souhaitez commander un billet pour le jour-même, seul le billet demi-journée vous est proposé à partir de 14 heures. </p>
             {{ form_label(form.ticketType, "Type de billet") }}
             {{ form_errors(form.ticketType) }}
-            {{ form_widget(form.ticketType) }}
+            {{ form_widget(form.ticketType,{'attr':{'class':'ticketType'}}) }}
         </div>
         </div>
         </div>
 
         <div class="sousetape">
-            <p>Choisissez un nombre de billet(s)<br />
-            Au-delà de 10 billets, Merci de contacter le musée.</p>
+            <p>Choisissez un nombre de billet(s)</p>
+
         </div>
 
         <div class="fondblanc">
             <div class="form-group">
-                <div class="formulaire">
+                <div class="formulaire"> <p>Au-delà de 10 billets, Merci de contacter le musée.</p>
             {{ form_label(form.ticketsNumber, "Nombre de billet(s)") }}
             {{ form_widget(form.ticketsNumber) }}
             {{ form_errors(form.ticketsNumber) }}
@@ -74,9 +76,8 @@ Accueil - {{ parent() }}
 
         <div class="sousetape">
             <p>
-                Vos billets vous seront adressés par mail. <br />
-                Veuillez indiquer une adresse mail valide.
-            </p>
+                Vos billets vous seront adressés par mail. <br />Veuillez indiquer une adresse mail valide. </p>
+
         </div>
 
         <div class="fondblanc">
@@ -85,6 +86,7 @@ Accueil - {{ parent() }}
                     {{ form_label(form.email, "Adresse email") }}
                     {{ form_widget(form.email, {'attr':{'placeholder':'you@exemple.com'}}) }}
                     {{ form_errors(form.email) }}
+
                 </div>
            </div>
         </div>

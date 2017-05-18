@@ -12,9 +12,9 @@ $.datepicker.regional['fr'] = {
     dateFormat: 'dd/mm/yy',
     firstDay: 1,
     isRTL: false,
+    showAnim: 'blind',
+    duration: 300,
     showMonthAfterYear: false,
-
-
     yearSuffix: ''};
 
 $.datepicker.setDefaults($.datepicker.regional['fr']);
@@ -25,18 +25,19 @@ function disableDays(date) {
     var d = date.getDay();
     var curDate = date.getDate();
     var m = date.getMonth();
+    var hour   = ('0'+now.getHours()).slice(-2);
 
-    //Tous les mardis et les dimanches
-    if (d == 2  || d == 0)
+    //Suppression des dimanches et mardis
+    if (d == 0  || d == 2)
     {
         return [false] ;
     }
-    //le 1er novembre et le 1er mai
-    else if (curDate == 1 && (m == 10 || m == 4))
+    //Suppression du 1er mai et du 1er novembre
+    else if (curDate == 1 && (m == 4 || m == 10))
     {
         return [false];
     }
-    // le 25 décembre
+    // Suppression du 25 décembre
     else if (curDate == 25 && m == 11){
         return [false];
     }
@@ -52,26 +53,21 @@ var year   = now.getFullYear();
 var month    = ('0'+(now.getMonth() + 1 )).slice(-2);
 var day    = ('0'+now.getDate()   ).slice(-2);
 var hour   = ('0'+now.getHours()  ).slice(-2);
-var timeCond = now.getHours() >= 18;
-var actualDate = day + "/" + month + "/" + year;
-
-var TicketTypeAllDay = $(".TicketType option[value='1']");
-var TicketTypeHalfDay = $(".TicketType option[value='0']");
-
-var myDate = null;
-
-$(function() {
+var limitHour = now.getHours() >= 18;
+var myDate = day + "/" + month + "/" + year;
+var halfDay = $(".ticketType option[value='0']");
+var allDay = $(".ticketType option[value='1']");
 
 
+$(function()
+{
 
-
-    $("#calendar").datepicker(
+    $(".datepicker").datepicker(
     {
-        inline: true,
-        altField: '#appbundle_commande_dateVisit',
-        autoUpdateInput: false,
-        minDate: timeCond ? 1 : 0,
+
+        minDate: limitHour ? 1 : 0,
         beforeShowDay: disableDays,
+
 
 
 
@@ -80,13 +76,14 @@ $(function() {
         {
             $('#date').val(dateText);
 
-            if (dateText == actualDate && hour >= 14 && hour < 24)
+            if (dateText == myDate && hour >= 14 && hour < 24)
             {
-                TicketTypeAllDay.detach();
+                allDay.detach();
+
             }
-            else
+            else if (dateText !== myDate && hour >= 14 && hour < 24)
             {
-                ticketTypeAllDay.insertBefore(TicketTypeHalfDay);
+                allDay.insertBefore(halfDay);
             }
         }
     });

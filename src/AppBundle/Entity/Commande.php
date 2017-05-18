@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Validator\LimitTickets;
@@ -92,6 +93,7 @@ class Commande
     public function __construct()
     {
         $this->date = new \Datetime();
+        $this->tickets = new ArrayCollection();
     }
 
 

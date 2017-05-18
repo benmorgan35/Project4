@@ -7,7 +7,6 @@ use AppBundle\Form\CommandeType;
 use AppBundle\Form\CommandeTicketsType;
 use AppBundle\Entity\Ticket;
 use AppBundle\Form\TicketType;
-use AppBundle\Entity\Price;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,20 +22,15 @@ class BilletterieController extends Controller
     public function indexAction(Request $request)
     {
 
-        $commande = new Commande();
-        /*
-        $commande = $this->get('app.commande.manager')->createCommande()
-        */
+        $commande = $this->get('app.commande.manager')->createCommande();
+
         $form = $this->createForm(CommandeType::class, $commande);
+        $form->handleRequest($request);
 
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($commande);
-            $em->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->get('app.commande.manager')->saveCommande($commande);
 
-            return $this->redirectToRoute('coordonnees', array(
-                'id' => $commande->getId()
-            ));
+            return $this->redirectToRoute('coordonnees');
         }
 
         return $this->render('::index.html.twig', array(
@@ -45,36 +39,23 @@ class BilletterieController extends Controller
     }
 
     /**
-     * @Route("/coordonnees/{id}", name="coordonnees")
+     * @Route("/coordonnees", name="coordonnees")
      * @Method({"GET", "POST"})
      */
-    public function coordonneesAction(Commande $commande, Request $request)
+    public function coordonneesAction(Request $request)
     {
 
-        /* $commande = $session->get('commande'); */
+        $commande = $this->get('app.commande.manager')->getCommande();
 
-        $nb = $commande->getTicketsNumber();
-
-        for ($i = 1; $i <= $nb; $i++)
-        {
-            $commande->addTicket(new Ticket());
-            /*
-            $ticket = $this->get('app.commande.manager')->setTicketPrice();
-            $ticket = $this->setPrice($ticketPrice);
-            */
-        }
+        $this->get('app.commande.manager')->adaptTickets($commande);
 
         $form = $this->createForm(CommandeTicketsType::class, $commande);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            $em = $this->getDoctrine()->getManager();
-            $em->flush();
-
-            return $this->redirectToRoute('recapitulatif', array(
-                'id' => $commande->getId(),
-            ));
+            $this->get('app.commande.manager')->saveCommande($commande);
+            return $this->redirectToRoute('recapitulatif', array('commande' => $commande));
         }
 
         return $this->render('::coordonnees.html.twig', array(
@@ -87,23 +68,106 @@ class BilletterieController extends Controller
     }
 
     /**
-     * @Route("/recapitulatif/{id}", name="recapitulatif")
+     * @Route("/recapitulatif", name="recapitulatif")
      * @Method({"GET"})
      */
-    public function recapitulatifAction(Commande $commande)
+    public function recapitulatifAction()
     {
-        /* $commande = $session->get('commande'); */
+        $commande = $this->get('app.commande.manager')->getCommande();
+        $this->get('app.commande.manager')->setCommandeTotal($commande);
+        $this->get('app.commande.manager')->saveCommande($commande);
         return $this->render('::recapitulatif.html.twig', array('commande' => $commande));
     }
 
+
+
     /**
-     * @Route("/paiement/{id}", name="paiement")
+     * @Route("/bankDetails", name="bankDetails")
+     * @Method({"POST"})
+     */
+    public function bankDetailsAction(Request $request)
+    {
+        $commande = $this->get('app.commande.manager')->getCommande();
+        $this->get('app.commande.manager')->saveCommande($commande);
+        $this->get('app.commande.manager')->setCode($commande);
+
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($commande);
+        $em->flush();
+
+
+        \Stripe\Stripe::setApiKey("sk_test_2ctegkL1ZQXY1vuk23xi8C9Y");
+
+        // Get the credit card details submitted by the form
+        $token = $_POST['stripeToken'];
+
+        $total = $commande->getTotal();
+
+        // Create a charge: this will charge the user's card
+        try {
+            \Stripe\Charge::create(array(
+                "amount" => $total * 100, // Amount in cents
+                "currency" => "eur",
+                "source" => $token,
+                "description" => "Paiement Stripe"
+            ));
+
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Votre commande - Billetterie du Louvre')
+                ->setFrom(array('ben.guiriec@gmail.com' => 'Musée du Louvre'))
+                ->setTo($commande->getEmail())
+                ->setBody(
+                    $this->renderView('Emails/mailCommande.html.twig', array('commande' => $commande)), 'text/html')
+            ;
+            $this->get('mailer')->send($message);
+
+            return $this->redirectToRoute('validation', array('commande' => $commande));
+
+        } catch (\Stripe\Error\Card $e) {
+
+            $this->addFlash("error", "Votre paiement a échoué. Veuillez recommencer");
+            return $this->redirectToRoute('recapitulatif',array('commande' => $commande) );
+            // The card has been declined
+        }
+    }
+
+
+    /**
+     * @Route("/validation", name="validation")
+     * @Method({"GET", "POST"})
+     */
+    public function validation()
+    {
+        $commande = $this->get('app.commande.manager')->getCommande();
+        $this->get('app.commande.manager')->saveCommande($commande);
+        //$commande->getCode();
+        return $this->render("::validation.html.twig", array('commande' => $commande));
+    }
+
+
+
+
+
+
+
+
+    /**
+     * @Route("/retour/{id}", name="retour")
      * @Method({"GET"})
      */
-    public function paiementAction(Commande $commande, Request $request)
+    public function retourAction(Commande $commande, Request $request)
     {
         /* $commande = $session->get('commande'); */
-        return $this->render('::paiement.html.twig', array('commande' => $commande));
+
+
+
+
+
+        return $this->redirectToRoute('coordonnees', array(
+            'id' => $commande->getId()
+        ));
     }
 
 }

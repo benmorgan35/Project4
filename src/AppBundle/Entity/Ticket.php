@@ -81,6 +81,13 @@ class Ticket
      */
     private $price;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tarif", type="string", length=255)
+     */
+    private $tarif;
+
 
     /**
      * Get id
@@ -235,6 +242,34 @@ class Ticket
     {
         return $this->price;
     }
+
+    /**
+     * Set tarif
+     *
+     * @param string $tarif
+     *
+     * @return Ticket
+     */
+    public function setTarif($tarif)
+    {
+        $this->tarif = $tarif;
+
+        return $this;
+    }
+
+    /**
+     * Get tarif
+     *
+     * @return string
+     */
+    public function getTarif()
+    {
+        return $this->tarif;
+    }
+
+
+
+
 
     /**
      * Set commande

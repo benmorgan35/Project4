@@ -4,7 +4,6 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
@@ -25,17 +24,18 @@ class CommandeType extends AbstractType
             ->add('dateVisit', DateType::class, array(
                 'widget' => 'single_text',
                 'html5' => false,
+                'attr' => array('class' => 'datepicker'),
                 'format' => 'dd/MM/yyyy',
             ))
 
             ->add('ticketType', ChoiceType::class, array(
                 'choices' => array (
                     'Journée complète' => true,
-                    'Demi-journée' => false,
+                    'Demi-journée (à partir de 14h)' => false,
                 ),
-                'expanded' => true,
-                'multiple' => false,
-                'data' => true,
+                'attr' => array('class' => 'ticketType'),
+                'data' =>'true',
+
 
             ))
             ->add('ticketsNumber', ChoiceType::class, array(

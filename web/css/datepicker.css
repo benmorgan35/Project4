@@ -1,15 +1,23 @@
 
+/*!
+ * jQuery UI CSS Framework 1.12.1
+ * http://jqueryui.com
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/category/theming/
+ *
+ * To view and modify this theme, visit http://jqueryui.com/themeroller/?scope=&folderName=custom-theme&bgImgOpacityError=40&bgImgOpacityHighlight=80&bgImgOpacityActive=20&bgImgOpacityHover=20&bgImgOpacityDefault=20&bgImgOpacityContent=25&bgImgOpacityHeader=25&cornerRadiusShadow=8px&offsetLeftShadow=-7px&offsetTopShadow=-7px&thicknessShadow=7px&opacityShadow=60&bgImgOpacityShadow=30&bgTextureShadow=flat&bgColorShadow=%23cccccc&opacityOverlay=80&bgImgOpacityOverlay=50&bgTextureOverlay=flat&bgColorOverlay=%235c5c5c&iconColorError=%23a83300&fcError=%23111111&borderColorError=%23ffb73d&bgTextureError=highlight_soft&bgColorError=%23ffc73d&iconColorHighlight=%234b8e0b&fcHighlight=%232e7db2&borderColorHighlight=%23cccccc&bgTextureHighlight=highlight_soft&bgColorHighlight=%23eeeeee&iconColorActive=%23222222&fcActive=%23ffffff&borderColorActive=%23ffaf0f&bgTextureActive=inset_soft&bgColorActive=%23f58400&iconColorHover=%23ffffff&fcHover=%23ffffff&borderColorHover=%232d3437&bgTextureHover=highlight_soft&bgColorHover=%232d3437&iconColorDefault=%23cccccc&fcDefault=%23eeeeee&borderColorDefault=%23666666&bgTextureDefault=highlight_soft&bgColorDefault=%23555555&iconColorContent=%23cccccc&fcContent=%23ffffff&borderColorContent=%23666666&bgTextureContent=flat&bgColorContent=%23000000&iconColorHeader=%23ffffff&fcHeader=%23ffffff&borderColorHeader=%23333333&bgTextureHeader=flat&bgColorHeader=%23333333&cornerRadius=6px&fwDefault=normal&fsDefault=1.0em&ffDefault=Arial
+ */
+
+
 /* Component containers
 ----------------------------------*/
-
-.ui-datepicker{
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .ui-widget {
-    font-family: arial;
-    font-size: 1em;
+    font-family: Arial;
+    font-size: 1.0em;
 }
 .ui-widget .ui-widget {
     font-size: 1em;
@@ -18,7 +26,7 @@
 .ui-widget select,
 .ui-widget textarea,
 .ui-widget button {
-    font-family: arial;
+    font-family: Arial;
     font-size: 1em;
 }
 .ui-widget.ui-widget-content {
@@ -26,7 +34,7 @@
 }
 .ui-widget-content {
     border: 1px solid #666666;
-    background: #000000 url("images/ui-bg_inset-soft_25_000000_1x100.png") 50% bottom repeat-x;
+    background: #000000;
     color: #ffffff;
 }
 .ui-widget-content a {
@@ -34,8 +42,8 @@
 }
 .ui-widget-header {
     border: 1px solid #333333;
-    background: #333333 url("images/ui-bg_gloss-wave_25_333333_500x100.png") 50% 50% repeat-x;
-    color: white;
+    background: #333333;
+    color: #ffffff;
     font-weight: bold;
 }
 .ui-widget-header a {
@@ -54,7 +62,7 @@
 html .ui-button.ui-state-disabled:hover,
 html .ui-button.ui-state-disabled:active {
     border: 1px solid #666666;
-    background: #555555 url("images/ui-bg_glass_20_555555_1x400.png") 50% 50% repeat-x;
+    background: #555555 url("../images/ui-bg_highlight-soft_20_555555_1x100.png") 50% 50% repeat-x;
     font-weight: normal;
     color: #eeeeee;
 }
@@ -76,8 +84,8 @@ a:visited.ui-button,
 .ui-widget-header .ui-state-focus,
 .ui-button:hover,
 .ui-button:focus {
-    border: 1px solid #222;
-    background: black url("images/ui-bg_glass_40_6e7578_1x400.png") 50% 50% repeat-x;
+    border: 1px solid #2d3437;
+    background: #2d3437 url("../images/ui-bg_highlight-soft_20_2d3437_1x100.png") 50% 50% repeat-x;
     font-weight: normal;
     color: #ffffff;
 }
@@ -98,19 +106,17 @@ a.ui-button:focus {
 .ui-visual-focus {
     box-shadow: 0 0 3px 1px rgb(94, 158, 214);
 }
-/*
 .ui-state-active,
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active,
 a.ui-button:active,
 .ui-button:active,
-.ui-button .ui-state-active:hover {
+.ui-button.ui-state-active:hover {
     border: 1px solid #ffaf0f;
-    background: #f58400 url("images/ui-bg_inset-soft_30_f58400_1x100.png") 50% 50% repeat-x;
+    background: #f58400 url("../images/ui-bg_inset-soft_20_f58400_1x100.png") 50% 50% repeat-x;
     font-weight: normal;
     color: #ffffff;
 }
-*/
 .ui-icon-background,
 .ui-state-active .ui-icon-background {
     border: #ffaf0f;
@@ -129,8 +135,8 @@ a.ui-button:active,
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
     border: 1px solid #cccccc;
-    background: #eeeeee url("images/ui-bg_highlight-soft_80_eeeeee_1x100.png") 50% top repeat-x;
-    color: #6c7b84;
+    background: #eeeeee url("../images/ui-bg_highlight-soft_80_eeeeee_1x100.png") 50% top repeat-x;
+    color: #2e7db2;
 }
 .ui-state-checked {
     border: 1px solid #cccccc;
@@ -139,13 +145,13 @@ a.ui-button:active,
 .ui-state-highlight a,
 .ui-widget-content .ui-state-highlight a,
 .ui-widget-header .ui-state-highlight a {
-    color: #6c7b84;
+    color: #2e7db2;
 }
 .ui-state-error,
 .ui-widget-content .ui-state-error,
 .ui-widget-header .ui-state-error {
     border: 1px solid #ffb73d;
-    background: #ffc73d url("images/ui-bg_glass_40_ffc73d_1x400.png") 50% 50% repeat-x;
+    background: #ffc73d url("../images/ui-bg_highlight-soft_40_ffc73d_1x100.png") 50% top repeat-x;
     color: #111111;
 }
 .ui-state-error a,
@@ -191,31 +197,31 @@ a.ui-button:active,
 }
 .ui-icon,
 .ui-widget-content .ui-icon {
-    background-image: url(../images/ui-icons_cccccc_256x240.png);
+    background-image: url("../images/ui-icons_cccccc_256x240.png");
 }
 .ui-widget-header .ui-icon {
-    background-image: url(../images/ui-icons_ffffff_256x240.png);
+    background-image: url("../images/ui-icons_ffffff_256x240.png");
 }
 .ui-state-hover .ui-icon,
 .ui-state-focus .ui-icon,
 .ui-button:hover .ui-icon,
 .ui-button:focus .ui-icon {
-    background-image: url(../images/ui-icons_ffffff_256x240.png);
+    background-image: url("../images/ui-icons_ffffff_256x240.png");
 }
 .ui-state-active .ui-icon,
 .ui-button:active .ui-icon {
-    background-image: url(../images/ui-icons_222222_256x240.png);
+    background-image: url("../images/ui-icons_222222_256x240.png");
 }
 .ui-state-highlight .ui-icon,
 .ui-button .ui-state-highlight.ui-icon {
-    background-image: url(../images/ui-icons_4b8e0b_256x240.png);
+    background-image: url("../images/ui-icons_4b8e0b_256x240.png");
 }
 .ui-state-error .ui-icon,
 .ui-state-error-text .ui-icon {
-    background-image: url(../images/ui-icons_a83300_256x240.png);
+    background-image: url("../images/ui-icons_a83300_256x240.png");
 }
 .ui-button .ui-icon {
-    background-image: url(../images/ui-icons_cccccc_256x240.png);
+    background-image: url("../images/ui-icons_cccccc_256x240.png");
 }
 
 /* positioning */
@@ -436,16 +442,3 @@ a.ui-button:active,
     -webkit-box-shadow: -7px -7px 7px #cccccc;
     box-shadow: -7px -7px 7px #cccccc;
 }
-
-/* --------------------------------------------------- */
-
-@media screen and (max-width: 480px) {
-    .ui-datepicker{
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-
-}
-
-

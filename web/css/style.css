@@ -32,6 +32,11 @@ hr{
     display: none;
 }
 
+
+
+
+
+
 /* --------------------------------------------------- */
 
 .ancre{
@@ -40,8 +45,20 @@ hr{
     color: #6E6E6E;
 }
 
+.achat{
+    background-color: lightgrey;
+
+    text-align: left;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+
+}
+
 .btn {
     margin-bottom: 25px;
+
 }
 
 
@@ -158,11 +175,19 @@ hr{
 .sousetape p{
     color: white;
 }
+.stripe-button-el{
+    float: right;
+    margin-bottom: 60px;
+
+
+}
 
 
 /* --------------------------------------------------- */
 
-
+#appbundle_commande_ticketType{
+    width: 240px;
+}
 
 
 #appbundle_commande_dateVisit{
@@ -193,8 +218,13 @@ hr{
     border-color: #4a4a4a;
 }
 
-#calendar{
-    margin-top: 30px;
+#adressemail{
+    font-weight: 700;
+    color: black;
+}
+
+#boutonvalidation{
+    margin-top: 20px;
 }
 
 #center{
@@ -203,8 +233,15 @@ hr{
 
 #cgv{
     margin-right: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     margin-top: 20px;
+}
+
+#detail{
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.2;
+    margin-bottom: 20px;
 }
 
 #right{
@@ -221,6 +258,13 @@ hr{
 #enflag{
     width: 60px;
     display: inline-block;
+}
+
+#felicitations{
+    color: darkgreen;
+    font-size: 1.4em;
+    margin-bottom: 30px;
+    font-weight: 700;
 }
 
 #forminput{
@@ -286,7 +330,7 @@ hr{
     margin-right: auto;
     margin-left: auto;
     margin-top: 20px;
-    margin-bottom: 20;
+    margin-bottom: 20px;
     border: none;
 }
 
@@ -307,6 +351,13 @@ hr{
     font-weight: 700;
     color: #4e4e4e;
 }
+
+#titreTicket{
+    font-weight: 700;
+    border-top-color: white;
+}
+
+
 #total{
     margin-left: auto;
     margin-right: auto;
@@ -362,10 +413,9 @@ hr{
 
     }
     .recap tr th{
-        display: none;
+        display: none;}
 
 
-    }
     #center{
         text-align: left;
         font-weight: 700;
@@ -383,5 +433,17 @@ hr{
 .champ{
     display: inline;
 }
+
+    .erreur{
+
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 80px;
+        padding-bottom: 80px;
+
+    }
+
+
+
 
 }
