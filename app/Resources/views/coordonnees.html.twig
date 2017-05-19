@@ -19,24 +19,24 @@
         <div id="colonne" class="col-sm-8">
 
             <div class="etape">
-                <h2>2. Coordonnées</h2>
+                <h2>{{ "2. Coordonnées"|trans }}</h2>
             </div>
 
             <div class="sousetape">
                 <p>
-                    Les billets sont nominatifs.<br/>
-                    Veuillez renseigner les informations demandées pour chaque bénéficiaire.
+                    {{ "Les billets sont nominatifs."|trans }}<br/>
+                    {{ "Veuillez renseigner les informations demandées pour chaque bénéficiaire."|trans }}
                 </p>
                 <p style="margin-left:40px;">
                     <i>
-                        Jour de votre visite : {{ commande.dateVisit|date('d/m/Y') }}<br/>
-                        Type de billet :
+                    {{ "Date de votre visite :"|trans }} {{ commande.dateVisit|date('d/m/Y') }}<br/>
+                        {{ "Type de billet :"|trans }}
                         {% if commande.ticketType %}
-                            Journée complète
+                        {{ "Journée complète"|trans }}
                         {% else %}
-                            Demi-journée
+                            {{ "Demi-journée"|trans }}
                         {% endif %}
-                        <br/>Nombre de billet(s): {{ commande.ticketsNumber }}
+                        <br/>{{ "Nombre de billet(s) :"|trans }} {{ commande.ticketsNumber }}
                     </i>
                 </p>
             </div>
@@ -59,7 +59,7 @@
                             <div class="col-sm-6" id="colonne">
 
                                 <div class="form-group" id="forminput">
-                                    {{ form_label(formTicket.lastName, 'Nom') }}
+                                    {{ form_label(formTicket.lastName, "Nom") }}
 
                                     {{ form_widget(formTicket.lastName) }}
                                     {{ form_errors(formTicket.lastName) }}
@@ -72,7 +72,7 @@
                             <div class="col-sm-6" id="colonne">
 
                                 <div class="form-group" id="forminput">
-                                    {{ form_label(formTicket.firstName, 'Prénom') }}
+                                    {{ form_label(formTicket.firstName, "Prénom") }}
 
                                     {{ form_widget(formTicket.firstName) }}
                                     {{ form_errors(formTicket.firstName) }}
@@ -91,7 +91,7 @@
                             <div class="col-sm-6" id="colonne">
 
                                 <div class="form-group formbirthday" id="forminput">
-                                    {{ form_label(formTicket.birthDate, 'Date de naissance') }}
+                                    {{ form_label(formTicket.birthDate, "Date de naissance") }}
 
                                     {{ form_widget(formTicket.birthDate) }}
                                     {{ form_errors(formTicket.birthDate) }}
@@ -104,7 +104,7 @@
                             <div class="col-sm-6" id="colonne">
 
                                 <div class="form-group" id="forminput">
-                                    {{ form_label(formTicket.nationality, 'Nationalité') }}
+                                    {{ form_label(formTicket.nationality, "Nationalité") }}
 
                                     {{ form_widget(formTicket.nationality) }}
                                     {{ form_errors(formTicket.nationality) }}
@@ -123,7 +123,7 @@
                             <div class="col-sm-12" id="colonne">
 
                                 <div class="form-group" id="forminput" style="float:right">
-                                    {{ form_label(formTicket.reducedPrice, 'tarif réduit') }}
+                                    {{ form_label(formTicket.reducedPrice, "tarif réduit") }}
 
                                     {{ form_widget(formTicket.reducedPrice) }}
                                     {{ form_errors(formTicket.reducedPrice) }}
@@ -144,9 +144,9 @@
                         <div class="form-group" id="forminput">
                             <div class="formcoordonnees">
 
-                                <a class="btn btn-primary pull-left" href="{{ path('homepage') }}" role="button">Retour</a>
+                                <a class="btn btn-primary pull-left" href="{{ path('homepage') }}" role="button">{{ "Retour"|trans }}</a>
 
-                                <input type="submit" value="Valider" class="btn btn-primary pull-right"/>
+                                <input type="submit" value="{{ "Poursuivre"|trans }}" class="btn btn-primary pull-right"/>
                             </div>
                         </div>
                     </div>

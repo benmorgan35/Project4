@@ -19,7 +19,7 @@
         <div id="colonne" class="col-sm-12">
 
             <div class="etape">
-                <h2>3. Récapitulatif de votre commande</h2>
+                <h2>{{ "3. Récapitulatif de votre commande"|trans }}</h2>
             </div>
 
 
@@ -27,42 +27,42 @@
             <div class="fondblanc">
 
                 <div class="commande">
-                    <p>Jour de votre visite : {{ commande.dateVisit|date('d/m/Y') }}</p>
+                    <p>{{ "Date de votre visite :"|trans }} {{ commande.dateVisit|date('d/m/Y') }}</p>
                     <p>
-                        Type de billet :
+                        {{ "Type de billet :"|trans }}
                         {% if commande.ticketType %}
-                            Journée complète
+                            {{ "Journée complète"|trans }}
                         {% else %}
-                            Demi-journée
+                            {{ "Demi-journée"|trans }}
                         {% endif %}
                     </p>
-                    <p>Nombre de billet(s): {{ commande.ticketsNumber }}</p>
+                    <p>{{ "Nombre de billet(s) :"|trans }} {{ commande.ticketsNumber }}</p>
                 </div>
 
-                <h3 id="beneficiaires">Bénéficiaire(s)</h3>
+                <h3 id="beneficiaires">{{ "Bénéficiaire(s)"|trans }}</h3>
 
                 <div class="table-responsive" id="recap">
                 <table class="table recap">
                     <thead>
                     <tr>
                         <th id="center">Ticket</th>
-                        <th>Nom</th>
-                        <th>Prénom</th>
-                        <th>Date de naissance</th>
-                        <th>Tarif</th>
-                        <th id="center">Prix du billet</th>
+                        <th>{{ "Nom"|trans }}</th>
+                        <th>{{ "Prénom"|trans }}</th>
+                        <th>{{ "Date de naissance"|trans }}</th>
+                        <th>{{ "Tarif"|trans }}</th>
+                        <th id="center">{{ "Prix du billet"|trans }}</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for ticket in commande.tickets %}
                     <tr>
                         <td id="center">Ticket {{ loop.index }}</td>
-                        <td><div class="champ"> Nom : </div>{{ ticket.lastName }}</td>
-                        <td><div class="champ">Prénom :  </div>{{ ticket.firstName }}</td>
-                        <td><div class="champ">Né(e) le </div>{{ ticket.birthDate|date('d/m/Y') }}</td>
-                        <td><div class="champ">Tarif </div>{{ ticket.tarif }}</td>
+                        <td><div class="champ"> {{ "Nom"|trans }} : </div>{{ ticket.lastName }}</td>
+                        <td><div class="champ">{{ "Prénom"|trans }} : </div>{{ ticket.firstName }}</td>
+                        <td><div class="champ">{{ "Né(e) le"|trans }} </div>{{ ticket.birthDate|date('d/m/Y') }}</td>
+                        <td><div class="champ">{{ "Tarif"|trans }} </div>{{ ticket.tarif }}</td>
 
-                        <td id="right"><div class="champ">Montant : </div>{{ ticket.price }} €</td>
+                        <td id="right"><div class="champ">{{ "Montant"|trans }} : </div>{{ ticket.price }} €</td>
                     </tr>
                      {% endfor %}
 
@@ -71,11 +71,11 @@
                 </table>
 
 
-                <p id="total">Montant total de votre commande : {{ commande.total }} € TTC</p>
+                <p id="total">{{ "Montant total de votre commande :"|trans }} {{ commande.total }} € TTC</p>
 
-<p>Veuillez prendre connaissance et accepter les conditions générales de vente avant de poursuivre.</p>
+<p>{{ "Veuillez prendre connaissance et accepter les conditions générales de vente avant de poursuivre."|trans }}</p>
                     <form id="cgv">
-                        <input type="checkbox" id="cgv" required><label>J'ai lu et j'accepte les <a href="https://www.ticketlouvre.fr/louvre/b2c/index.cfm/CGV" target="_blank">conditions générales de vente.</a></label>
+                        <input type="checkbox" id="cgv" required><label>{{ "J'ai lu et j'accepte les "|trans }}<a href="https://www.ticketlouvre.fr/louvre/b2c/index.cfm/CGV" target="_blank">{{ "conditions générales de vente."|trans }}</a></label>
                     </form>
 
 
@@ -88,10 +88,10 @@
                                 data-key="pk_test_RjR9pG1OSUBR5Kk0W083fo8k"
                                 data-amount="{{ commande.total * 100 }}"
                                 data-image="{{ asset('images/logo.jpg') }}"
-                                data-name="Billetterie du Louvre"
-                                data-description="Paiement"
+                                data-name="{{ "Billetterie du Louvre"|trans }}"
+                                data-description="{{ "Paiement"|trans }}"
                                 data-locale="auto"
-                                data-label="Payer"
+                                data-label="{{ "Paiement"|trans }}"
                                 data-customer="true"
                                 data-email="{{ commande.email }}"
                                 data-allow-remember-me="false"
@@ -105,7 +105,7 @@
 
 
 
-                    <a class="btn btn-primary pull-left" href="{{ path('coordonnees')}}" role="button">Retour</a>
+                    <a class="btn btn-primary pull-left" href="{{ path('coordonnees')}}" role="button">{{ "Retour"|trans }}</a>
 
 
             </div>

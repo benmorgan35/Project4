@@ -144,7 +144,7 @@ class CommandeManager extends Controller
     }
 
 
-    //linéarisation qui conserve le type de la variable originale pour stocker une commande.
+    //Linéarisation qui conserve le type de la variable originale pour stocker une commande.
     public function saveCommande($commande)
     {
         $this->session->set('commande', serialize($commande));
@@ -171,6 +171,7 @@ class CommandeManager extends Controller
         return $commande;
     }
 
+    // Attribution d'un code unique
     public function setCode(Commande $commande)
     {
         $email = $commande->getEmail();

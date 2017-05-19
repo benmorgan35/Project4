@@ -16,37 +16,37 @@
         <div id="colonne" class="col-sm-12">
 
             <div class="etape">
-                <h2>Validation de votre commmande</h2>
+                <h2>{{ "Validation de votre commmande"|trans }}</h2>
 
             </div>
 
             <div class="fondnoir">
 
                 <div class="erreur">
-                    <p id="felicitations">Félicitations ! Votre commande est validée.</p>
-                    <p>Vous recevrez prochainement votre/vos billet(s) à l'adresse mail :</p>
+                    <p id="felicitations">{{ "Félicitations ! Votre commande est validée"|trans }}.</p>
+                    <p>{{ "Vous recevrez prochainement votre/vos billet(s) à l'adresse mail"|trans }}</p>
                     <p id="adressemail">  {{ commande.email }}.</p>
                     <hr />
                     <p>
-                        Veuillez noter la référence de votre commande.<br />
-                        En cas de problème de réception de mail, contactez-nous au 00/00/00/00/00, muni de cette référence.
+                        {{ "Veuillez noter la référence de votre commande"|trans }}.<br />
+                        {{ "En cas de problème de réception de mail, contactez-nous au 00/00/00/00/00, muni de cette référence"|trans }}.
                     </p>
                     <div class="achat">
 
-                        <h3 id="detail">Détail de votre achat</h3>
-                        <p>Date de votre achat : {{ commande.date|date('d/m/Y') }}</p>
-                    <p>Référence de votre commande : {{ commande.code }}</p>
-                    <p>Montant de votre commande : {{ commande.total }} euros</p>
-                    <p>Date de votre visite : {{ commande.dateVisit|date('d/m/Y') }}</p>
-                    <p>Type de billet :
+                        <h3 id="detail">{{ "Détail de votre achat"|trans }}</h3>
+                        <p>{{ "Date de votre achat :"|trans }} {{ commande.date|date('d/m/Y') }}</p>
+                    <p>{{ "Référence de votre commande :"|trans }} {{ commande.code }}</p>
+                    <p>{{ "Montant total de votre commande :"|trans }} {{ commande.total }} euros</p>
+                    <p>{{ "Date de votre visite :"|trans }} {{ commande.dateVisit|date('d/m/Y') }}</p>
+                    <p>{{ "Type de billet :"|trans }}
                         {% if commande.ticketType %}
                             Journée complète
                         {% else %}
                             Demi-journée
                         {% endif %}
                     </p>
-                        <p>Nombre de billet(s) : {{ commande.ticketsNumber }}</p>
-                    <p>Bénéficiaire(s) : <br />
+                        <p>{{ "Nombre de billet(s) :"|trans }} {{ commande.ticketsNumber }}</p>
+                    <p>{{ "Bénéficiaire(s)"|trans }}<br />
 
                         {% for ticket in commande.tickets %}
                         <hr />
@@ -60,7 +60,7 @@
                     </div>
                    <hr />
 
-                    <a class="btn btn-primary" href="{{ path('homepage') }}" role="button" id="boutonvalidation">Retour à la page d'accueil</a>
+                    <a class="btn btn-primary" href="{{ path('homepage') }}" role="button" id="boutonvalidation">{{ "Retour à la page d'accueil"|trans }}</a>
 
                 </div>
 

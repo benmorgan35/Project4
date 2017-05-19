@@ -16,12 +16,12 @@ Accueil - {{ parent() }}
     <div id="colonne" class="col-sm-8">
 
         <div class="etape">
-            <h2>1. Choix du/des billet(s)</h2>
+            <h2>{{ "1. Choix du/des billet(s)"|trans}}</h2>
         </div>
 
 
         <div class="sousetape">
-            <p>Choisissez un jour de visite</p>
+            <p>{{ "Choisissez un jour de visite"|trans }}</p>
         </div>
 
 
@@ -42,7 +42,7 @@ Accueil - {{ parent() }}
 
 
         <div class="sousetape">
-            <p>Choisissez un type de billet (journée complète ou demi-journée)</p>
+            <p>{{  "Choisissez un type de billet (journée complète ou demi-journée)"|trans}}</p>
 
         </div>
 
@@ -50,7 +50,7 @@ Accueil - {{ parent() }}
 
 
         <div class="form-group">
-        <div class="formulaire"><p>Si vous souhaitez commander un billet pour le jour-même, seul le billet demi-journée vous est proposé à partir de 14 heures. </p>
+        <div class="formulaire"><p>{{ "Si vous souhaitez commander un billet pour le jour-même, seul le billet demi-journée vous est proposé à partir de 14 heures."|trans }}</p>
             {{ form_label(form.ticketType, "Type de billet") }}
             {{ form_errors(form.ticketType) }}
             {{ form_widget(form.ticketType,{'attr':{'class':'ticketType'}}) }}
@@ -59,13 +59,13 @@ Accueil - {{ parent() }}
         </div>
 
         <div class="sousetape">
-            <p>Choisissez un nombre de billet(s)</p>
+            <p>{{ "Choisissez un nombre de billet(s)"|trans }}</p>
 
         </div>
 
         <div class="fondblanc">
             <div class="form-group">
-                <div class="formulaire"> <p>Au-delà de 10 billets, Merci de contacter le musée.</p>
+                <div class="formulaire"> <p>{{ "Au-delà de 10 billets, Merci de contacter le musée."|trans }}</p>
             {{ form_label(form.ticketsNumber, "Nombre de billet(s)") }}
             {{ form_widget(form.ticketsNumber) }}
             {{ form_errors(form.ticketsNumber) }}
@@ -76,14 +76,14 @@ Accueil - {{ parent() }}
 
         <div class="sousetape">
             <p>
-                Vos billets vous seront adressés par mail. <br />Veuillez indiquer une adresse mail valide. </p>
+                {{ "Vos billets vous seront adressés par mail."|trans }} <br />{{ "Veuillez indiquer une adresse mail valide."|trans }}</p>
 
         </div>
 
         <div class="fondblanc">
             <div class="form-group">
                 <div class="formulaire">
-                    {{ form_label(form.email, "Adresse email") }}
+                    {{ form_label(form.email, "email") }}
                     {{ form_widget(form.email, {'attr':{'placeholder':'you@exemple.com'}}) }}
                     {{ form_errors(form.email) }}
 
@@ -94,8 +94,8 @@ Accueil - {{ parent() }}
         <div class="fondblanc">
             <div class="form-group">
                 <div class="formulaire">
-                    <input type="reset" value="Annuler" class="btn btn-primary pull-left"/>
-                    <input type="submit" value="Poursuivre" class="btn btn-primary pull-right"/>
+                    <input type="reset" value="{{ "Annuler"|trans }}" class="btn btn-primary pull-left"/>
+                    <input type="submit" value="{{ "Poursuivre"|trans }}" class="btn btn-primary pull-right"/>
                 </div>
             </div>
         </div>
