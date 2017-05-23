@@ -70,7 +70,7 @@ class Commande
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
-     * @Assert\NotBlank(message="ddd")
+     * @Assert\NotBlank(message="Veuillez compléter ce champ")
      * @Assert\Email(message="Veuillez saisir une adresse électronique valide")
      */
     private $email;

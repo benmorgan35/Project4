@@ -31,35 +31,34 @@
 
     <p>{{ "Vous trouverez ci-dessous le récapitulatif de votre commande. Ce mail est votre billet électronique."|trans }} </p>
 
-   <p style="font-weight: 700; margin-top: 20px;">Date de votre visite : {{ commande.dateVisit|date('d/m/Y') }}<br />
-   Type de billet :
+   <p style="font-weight: 700; margin-top: 20px;">{{ "Date de votre visite :"|trans }} {{ commande.dateVisit|date('d/m/Y') }}<br />
+       {{ "Type de billet :"|trans}}
     {% if commande.ticketType %}
-        Journée complète
+       {{ "Journée complète"|trans}}
     {% else %}
-        Demi-journée
+        {{ "Demi-journée"|trans}}
     {% endif %}<br />
-    Nombre de billet(s) : {{ commande.ticketsNumber }}</p>
+    {{ "Nombre de billet(s) :"|trans}} {{ commande.ticketsNumber }}</p>
 
-    <h3>Billet(s)</h3>
+    <h3>{{ "Billet(s)"|trans }}</h3>
 
     {% for ticket in commande.tickets %}
 
-    <p style="background-color:grey; padding: 10px; font-weight: 700; color:white; margin-bottom:-5px;">Billet {{ loop.index }}</p>
+    <p style="background-color:grey; padding: 10px; font-weight: 700; color:white; margin-bottom:-5px;">{{ "Billet"|trans}} {{ loop.index }}</p>
             <div class="ticketmail" style="background-color: lightgrey; padding: 10px;">
-    <p>Bénéficiaire : {{ ticket.firstName }} {{ ticket.lastName }}<br />
-    Né(e) le {{ ticket.birthDate|date('d/m/Y') }}<br />
-    Tarif {{ ticket.tarif}}<br />
-    Prix : {{ticket.price}} euros</p>
+    <p>{{ "Bénéficiaire :"|trans}} {{ ticket.firstName }} {{ ticket.lastName }}<br />
+    {{ "Né(e) le"|trans}} {{ ticket.birthDate|date('d/m/Y') }}<br />
+        {{ "Tarif :"|trans}} {{ ticket.tarif|trans}}<br />
+    {{ "Prix :"|trans}} {{ticket.price}} euros</p>
         </div>
 
     {% endfor %}
     <hr />
     <div class="total" style="background-color:#222; padding:10px; color:lightgray; font-weight: 700; margin-bottom: 20px;">
-    <p>Total de votre commande : {{commande.total}} euros</p>
+    <p>{{ "Montant total de votre commande :"|trans }} {{commande.total}} euros</p>
     </div>
 <div class="tarifreduit" style="font-style: italic; color:grey;">
-    <p>Nous vous rappelons qu'un justificatif sera demandé au(x) bénéficiaire(s) du tarif
-        réduit, à l'entrée du Musée. </p>
+    <p>{{ "Nous vous rappelons qu'un justificatif sera demandé au(x) bénéficiaire(s) du tarif réduit, à l'entrée du Musée."|trans }} </p>
 </div>
 
 </div>
@@ -67,8 +66,8 @@
 
     <footer id="footer" style="background-color: #222; padding: 20px; margin-top: 30px; text-align: center">
         <p style="color:lightgrey">Musée du Louvre |
-            <a href="http://www.louvre.fr/" target="_blank">Accueil</a> |
-            <a href="https://www.ticketlouvre.fr/louvre/b2c/index.cfm/CGV" target="_blank">Conditions générales de vente</a>
+            <a href="http://www.louvre.fr/" target="_blank">{{ "Accueil"|trans }}</a> |
+            <a href="https://www.ticketlouvre.fr/louvre/b2c/index.cfm/CGV" target="_blank">{{ "Conditions générales de vente"|trans }}</a>
         </p>
     </footer>
 

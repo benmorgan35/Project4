@@ -7,6 +7,20 @@
     {{ "Billet à la journée ou à la demi-journée (à partir de 14 h)"|trans }}
     </p>
 
+
+
+
 <div class="ancre">
     <a class="btn btn-primary" href="#info" role="button">{{ "Informations pratiques"|trans}}</a>
 </div>
+
+
+
+{% for flash_message in app.session.flashBag.get('error') %}
+    <div class="flash-error">
+        {{ flash_message|trans }}
+    </div>
+{% endfor %}
+
+
+

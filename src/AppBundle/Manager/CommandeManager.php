@@ -129,6 +129,9 @@ class CommandeManager extends Controller
     }
 
     // conversion d'une commande en variable php.
+    /**
+     * @return bool|mixed
+     */
     public function getCommande()
     {
         if ($this->session->has('commande'))
@@ -145,6 +148,10 @@ class CommandeManager extends Controller
 
 
     //Linéarisation qui conserve le type de la variable originale pour stocker une commande.
+    /**
+     * @param $commande
+     * @return mixed
+     */
     public function saveCommande($commande)
     {
         $this->session->set('commande', serialize($commande));
@@ -152,6 +159,10 @@ class CommandeManager extends Controller
     }
 
     //Adaptation du nombre de tickets au nombre précisé dans le formumaire après un retour et une modification du nombre.
+    /**
+     * @param $commande
+     * @return mixed
+     */
     public function adaptTickets($commande)
     {
         $nb = $commande->getTicketsNumber();
@@ -172,6 +183,10 @@ class CommandeManager extends Controller
     }
 
     // Attribution d'un code unique
+    /**
+     * @param Commande $commande
+     * @return int
+     */
     public function setCode(Commande $commande)
     {
         $email = $commande->getEmail();
@@ -185,6 +200,18 @@ class CommandeManager extends Controller
         $commande->setCode('ML-' . $date . '-' . $carMail);
 
         return $code;
+    }
+
+    //On enregistre la commande en BDD et on
+    /**
+     * @param Commande $commande
+     */
+    public function flushAndRemoveSession(Commande $commande)
+    {
+        $this->em->persist($commande);
+        $this->em->flush();
+        $this->session->remove('commande');
+
     }
 
 

@@ -36,7 +36,7 @@ class Ticket
      *
      * @ORM\Column(name="lastName", type="string", length=255)
      * @Assert\NotBlank()
-     * @Assert\Length(min=2, minMessage="Nom invalide.")
+     * @Assert\Length(min=2, minMessage="Nom invalide")
      */
     private $lastName;
 
@@ -44,7 +44,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=255)
-     * @Assert\Length(min=2, minMessage="Prénom invalide.")
+     * @Assert\Length(min=2, minMessage="Prénom invalide")
      */
     private $firstName;
 

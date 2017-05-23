@@ -13,7 +13,8 @@
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/datepicker.css') }}">
     {% endblock %}
-    {#<link rel="icon" type="image/x-icon" href="{{ asset/images('favicon.ico') }}"/>#}
+    <link rel="shortcut icon" type="x-icon" href="{{ asset('images/favicon.ico') }}">
+    <link rel="icon" type="x-icon" href="{{ asset('images/favicon.ico') }}">
 
 </head>
 
@@ -44,12 +45,12 @@
                 <ul class="nav navbar-nav navbar-right">
 
                     <li>
-                        <a class="flag" href=""><img src="{{ asset('images/fr.png') }}" title="fr" alt="frflag"
+                        <a class="flag" href="{{ path('setLocale', {'language': 'fr'}) }}"><img src="{{ asset('images/fr.png') }}" title="fr" alt="frflag"
                                                      id="frflag"></a>
                     </li>
 
                     <li>
-                        <a class="flag" href=""><img src="{{ asset('images/uk.png') }}" title="en" alt="ukflag"
+                        <a class="flag" href="{{ path('setLocale', {'language': 'en'} )  }}"><img src="{{ asset('images/uk.png') }}" title="en" alt="ukflag"
                                                      id="enflag"></a>
                     </li> <li>
                         <a class="home" href="{{ path('homepage') }}"><img src="{{ asset('images/home.png') }}" title="home" alt="home"

@@ -110,6 +110,11 @@ hr{
     padding: 70px;
 }
 
+.fondnoirvalid{
+    background-color: #262626;
+    padding: 70px;
+}
+
 .formcoordonnees{
     margin-left: 10px;
     margin-right: 10px;
@@ -267,6 +272,17 @@ hr{
     font-weight: 700;
 }
 
+.flash-error{
+    border: 1px solid #c82d00;
+font-weight: 700;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+}
+
 #forminput{
     padding-left: 10px;
     padding-right: 10px;
@@ -305,7 +321,7 @@ hr{
 }
 
 #layout{
-    background: #c82d00;;
+    background: #c82d00;
     margin-left: auto;
     margin-right: auto;
     padding: 0;
@@ -384,6 +400,11 @@ hr{
     #forminput{
         padding-left: 50px;
         padding-right: 50px;
+    }
+
+    .fondnoirvalid{
+        background-color: #262626;
+        padding: 0;
     }
 
     .formbirthday .form-control{

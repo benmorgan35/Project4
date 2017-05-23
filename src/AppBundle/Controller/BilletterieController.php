@@ -12,18 +12,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class BilletterieController extends Controller
 {
+
     /**
-     * @Route("/", name="homepage")
+     * @Route("/{_locale}", name="homepage")
      * @Method({"GET", "POST"})
+     * requirements={"_locale": "en|fr"}
      */
     public function indexAction(Request $request)
     {
-
         $commande = $this->get('app.commande.manager')->createCommande();
-
+        $locale = $request->getLocale();
         $form = $this->createForm(CommandeType::class, $commande);
         $form->handleRequest($request);
 
@@ -39,8 +42,9 @@ class BilletterieController extends Controller
     }
 
     /**
-     * @Route("/coordonnees", name="coordonnees")
+     * @Route("/coordonnees/{_locale}", name="coordonnees")
      * @Method({"GET", "POST"})
+     * requirements={"_locale": "en|fr"}
      */
     public function coordonneesAction(Request $request)
     {
@@ -63,18 +67,28 @@ class BilletterieController extends Controller
             'form' => $form->createView()
         ));
 
-
         return $this->render('::coordonnees.html.twig', array('commande' => $commande));
     }
 
-    /**
-     * @Route("/recapitulatif", name="recapitulatif")
+     /**
+     * @Route("/recapitulatif/{_locale}", name="recapitulatif")
      * @Method({"GET"})
+     * requirements={"_locale": "en|fr"}
      */
-    public function recapitulatifAction()
+    public function recapitulatifAction(Request $request)
     {
         $commande = $this->get('app.commande.manager')->getCommande();
         $this->get('app.commande.manager')->setCommandeTotal($commande);
+
+        if ($commande->getTotal() == 0)
+        {
+            $this->addFlash(
+                'error',
+                'Nous sommes désolés, vous ne pouvez commander de billets pour des enfants de moins de quatre ans non accompagnés. Veuillez modifier votre commande.'
+            );
+            return $this->redirectToRoute('homepage', array('commande' => $commande));
+        }
+
         $this->get('app.commande.manager')->saveCommande($commande);
         return $this->render('::recapitulatif.html.twig', array('commande' => $commande));
     }
@@ -82,25 +96,18 @@ class BilletterieController extends Controller
 
 
     /**
-     * @Route("/bankDetails", name="bankDetails")
+     * @Route("/bankDetails/{_locale}", name="bankDetails")
      * @Method({"POST"})
+     * requirements={"_locale": "en|fr"}
      */
     public function bankDetailsAction(Request $request)
     {
         $commande = $this->get('app.commande.manager')->getCommande();
-        $this->get('app.commande.manager')->saveCommande($commande);
-        $this->get('app.commande.manager')->setCode($commande);
 
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($commande);
-        $em->flush();
-
-
-        \Stripe\Stripe::setApiKey("sk_test_2ctegkL1ZQXY1vuk23xi8C9Y");
+        \Stripe\Stripe::setApiKey($this->getParameter('stripe_private_key'));
 
         // Get the credit card details submitted by the form
-        $token = $_POST['stripeToken'];
+        $token = $request->request->get('stripeToken');
 
         $total = $commande->getTotal();
 
@@ -113,6 +120,8 @@ class BilletterieController extends Controller
                 "description" => "Paiement Stripe"
             ));
 
+            $this->get('app.commande.manager')->setCode($commande);
+            $this->get('app.commande.manager')->flushAndRemoveSession($commande);
 
             $message = \Swift_Message::newInstance()
                 ->setSubject('Votre commande - Billetterie du Louvre')
@@ -123,11 +132,14 @@ class BilletterieController extends Controller
             ;
             $this->get('mailer')->send($message);
 
-            return $this->redirectToRoute('validation', array('commande' => $commande));
+            return $this->redirectToRoute('validation', array('code' => $commande->getCode()));
 
         } catch (\Stripe\Error\Card $e) {
 
-            $this->addFlash("error", "Votre paiement a échoué. Veuillez recommencer");
+            $this->addFlash(
+                'error',
+                'Nous sommes désolés, votre paiement a échoué. Veuillez recommencer cette étape.'
+            );
             return $this->redirectToRoute('recapitulatif',array('commande' => $commande) );
             // The card has been declined
         }
@@ -135,38 +147,34 @@ class BilletterieController extends Controller
 
 
     /**
-     * @Route("/validation", name="validation")
-     * @Method({"GET", "POST"})
+     * @Route("/validation/{_locale}/{code}", name="validation")
+     * @Method({"GET"})
+     * requirements={"_locale": "en|fr"}
      */
-    public function validation()
+    public function validation(Commande $commande)
     {
-        $commande = $this->get('app.commande.manager')->getCommande();
-        $this->get('app.commande.manager')->saveCommande($commande);
-        //$commande->getCode();
         return $this->render("::validation.html.twig", array('commande' => $commande));
     }
 
 
-
-
-
-
-
     /**
-     * @Route("/retour/{id}", name="retour")
-     * @Method({"GET"})
+     * Change the locale for the current user
+     *
+     * @param String $language
+     * @return array
+     *
+     * @Route("/{language}", name="setLocale")
      */
-    public function retourAction(Commande $commande, Request $request)
+    public function setLocaleAction(Request $request, $language = null)
     {
-        /* $commande = $session->get('commande'); */
+        if($language != null)
+        {
+            // On enregistre la langue en session
+            $this->get('session')->set('_locale', $language);
+        }
 
-
-
-
-
-        return $this->redirectToRoute('coordonnees', array(
-            'id' => $commande->getId()
-        ));
+        return $this->redirectToRoute('homepage');
     }
+
 
 }

@@ -30,6 +30,8 @@ Tarifs: Prices
 Tous droits réservés: All rights reserved
 Conditions générales de vente: Terms of Sales
 Accueil: Home
+Coordonnées: Beneficiaries
+Récapitulatif: Recapitulatory
 
 
 
@@ -63,7 +65,7 @@ Tarif: "Rate"
 Bénéficiaire(s): Beneficiaries
 Prix du billet: Ticket price
 Montant: Ticket price
-Né(e) le: Born the
+Né(e) le: Born on the
 Retour: Return
 "Montant total de votre commande :": "Total amount of your order:"
 Veuillez prendre connaissance et accepter les conditions générales de vente avant de poursuivre.: Please read and accept the terms and conditions before proceeding.
@@ -88,3 +90,16 @@ Commande validée: Validated order
 Félicitations ! Votre commande a été enregistrée le: Congratulations! Your order has been registered on
 "Référence de votre commande :": "Order reference:"
 Vous trouverez ci-dessous le récapitulatif de votre commande. Ce mail est votre billet électronique.: You will find below the summary of your order. This email is your electronic ticket.
+Billet(s): Ticket(s)
+Billet: Ticket
+"Bénéficiaire :": "Beneficiary: "
+"Tarif :": "Rate: "
+"Prix :": "Price: "
+gratuit: free
+enfant : child
+réduit : reduced
+Nous vous rappelons qu'un justificatif sera demandé au(x) bénéficiaire(s) du tarif réduit, à l'entrée du Musée.: We would like to remind you that proof will be requested of the beneficiary (s) of the reduced rate, at the entrance of the Museum.
+
+Nous sommes désolés, vous ne pouvez commander de billets pour des enfants de moins de quatre ans non accompagnés. Veuillez modifier votre commande. : We're sorry, you can not order tickets for children under the age of four unaccompanied. Please change your order.
+
+Nous sommes désolés, votre paiement a échoué. Veuillez recommencer cette étape.: We are sorry, your payment has failed. Please repeat this step.
