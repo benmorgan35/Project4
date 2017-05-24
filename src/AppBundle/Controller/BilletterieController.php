@@ -141,7 +141,7 @@ class BilletterieController extends Controller
                 'Nous sommes désolés, votre paiement a échoué. Veuillez recommencer cette étape.'
             );
             return $this->redirectToRoute('recapitulatif',array('commande' => $commande) );
-            // The card has been declined
+            // Le paiement a échoué
         }
     }
 
