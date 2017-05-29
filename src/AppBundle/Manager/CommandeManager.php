@@ -4,14 +4,7 @@ namespace AppBundle\Manager;
 
 use AppBundle\Entity\Commande;
 use AppBundle\Entity\Ticket;
-use AppBundle\Form\CommandeType;
-use AppBundle\Form\CommandeTicketsType;
-use AppBundle\Form\TicketType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -58,7 +51,7 @@ class CommandeManager extends Controller
         switch ($age)
         {
             case ($age >= 12 && $age < 60):
-                if ($ticketType == false){
+                if ($ticketType === false){
                     $ticket->setPrice(8);
                 }
                 else{
@@ -69,7 +62,7 @@ class CommandeManager extends Controller
                 break;
 
             case ($age >= 4 && $age < 12):
-                if ($ticketType == false){
+                if ($ticketType === false){
                     $ticket->setPrice(4);
                 }
                 else{
@@ -79,7 +72,7 @@ class CommandeManager extends Controller
                 break;
 
             case ($age >= 60):
-                if ($ticketType == false){
+                if ($ticketType === false){
                     $ticket->setPrice(6);
                 }
                 else{
@@ -100,7 +93,7 @@ class CommandeManager extends Controller
             $ticket->setTarif('réduit');
         }
 
-        if ($ticket->getReducedPrice() === true && $ticketType == false && $ticket->getPrice() >= 5)
+        if ($ticket->getReducedPrice() === true && $ticketType === false && $ticket->getPrice() >= 5)
         {
             $ticket->setPrice(5);
             $ticket->setTarif('réduit');

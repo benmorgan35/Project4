@@ -3,17 +3,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Commande;
-use AppBundle\Form\CommandeType;
-use AppBundle\Form\CommandeTicketsType;
-use AppBundle\Entity\Ticket;
-use AppBundle\Form\TicketType;
+use AppBundle\Form\Type\CommandeType;
+use AppBundle\Form\Type\CommandeTicketsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+
 
 class BilletterieController extends Controller
 {
@@ -26,7 +22,6 @@ class BilletterieController extends Controller
     public function indexAction(Request $request)
     {
         $commande = $this->get('app.commande.manager')->createCommande();
-        $locale = $request->getLocale();
         $form = $this->createForm(CommandeType::class, $commande);
         $form->handleRequest($request);
 
@@ -72,7 +67,7 @@ class BilletterieController extends Controller
             'form' => $form->createView()
         ));
 
-        return $this->render('::coordonnees.html.twig', array('commande' => $commande));
+        return $this->render('::coordonnees.html.twig', array('form' => $form->createView()));
     }
 
      /**
@@ -162,7 +157,7 @@ class BilletterieController extends Controller
      * @Method({"GET"})
      * requirements={"_locale": "en|fr"}
      */
-    public function validation(Commande $commande)
+    public function validationAction(Commande $commande)
     {
         return $this->render("::validation.html.twig", array('commande' => $commande));
     }
@@ -178,7 +173,7 @@ class BilletterieController extends Controller
      */
     public function setLocaleAction(Request $request, $language = null)
     {
-        if($language != null)
+        if($language !== null)
         {
             // La locale en session
             $this->get('session')->set('_locale', $language);

@@ -2,9 +2,11 @@
     "name": "benedicteguiriec/project4",
     "license": "proprietary",
     "type": "project",
+    "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "": "src/",
+            "AppBundle\\": "src/AppBundle"
         },
         "classmap": [
             "app/AppKernel.php",
