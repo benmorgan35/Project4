@@ -77,12 +77,15 @@ class BilletterieController extends Controller
     public function recapitulatifAction(Request $request)
     {
         $commande = $this->get('app.commande.manager')->getCommande();
-        $this->get('app.commande.manager')->setCommandeTotal($commande);
 
         if ($commande === false)
         {
             return $this->redirectToRoute('homepage');
         }
+
+        $this->get('app.commande.manager')->setCommandeTotal($commande);
+
+
 
 
         if ($commande->getTotal() == 0)

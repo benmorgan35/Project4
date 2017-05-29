@@ -30,9 +30,6 @@ class BilletterieControllerTest extends WebTestCase
     }
 
 
-
-
-
     //OK
     public function testIndex()
     {
@@ -45,12 +42,6 @@ class BilletterieControllerTest extends WebTestCase
             $crawler->filter('html:contains("jour")')->count()
         );
     }
-
-
-
-
-
-
 
 
     //OK
@@ -83,19 +74,22 @@ class BilletterieControllerTest extends WebTestCase
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/fr/');
-        $buttonCrawlerNode = $crawler->selectButton('#appbundle_commande_Poursuivre');
-
+        $buttonCrawlerNode = $crawler->selectButton('Poursuivre');
         $form = $buttonCrawlerNode->form();
-
         $client->submit($form);
+
     }
 
-
+    // ne marche pas
     public function testLink()
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/recapitulatif');
-        $crawler->selectLink('conditions');
+        $crawler = $client->request('GET', '/fr/recapitulatif/');
+        $link = $crawler
+            ->selectLink('#liencgv')
+            ->link();
+        $client->click($link);
+
     }
 
 
