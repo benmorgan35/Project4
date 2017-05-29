@@ -67,7 +67,6 @@ class BilletterieController extends Controller
             'form' => $form->createView()
         ));
 
-        return $this->render('::coordonnees.html.twig', array('form' => $form->createView()));
     }
 
      /**
