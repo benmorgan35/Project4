@@ -19,7 +19,7 @@ class BilletterieController extends Controller
 {
 
     /**
-     * @Route("/{_locale}", name="homepage")
+     * @Route("/{_locale}/", name="homepage")
      * @Method({"GET", "POST"})
      * requirements={"_locale": "en|fr"}
      */
@@ -42,7 +42,7 @@ class BilletterieController extends Controller
     }
 
     /**
-     * @Route("/coordonnees/{_locale}", name="coordonnees")
+     * @Route("/{_locale}/coordonnees/", name="coordonnees")
      * @Method({"GET", "POST"})
      * requirements={"_locale": "en|fr"}
      */
@@ -50,6 +50,11 @@ class BilletterieController extends Controller
     {
 
         $commande = $this->get('app.commande.manager')->getCommande();
+
+        if ($commande === false)
+        {
+            return $this->redirectToRoute('homepage');
+        }
 
         $this->get('app.commande.manager')->adaptTickets($commande);
 
@@ -71,7 +76,7 @@ class BilletterieController extends Controller
     }
 
      /**
-     * @Route("/recapitulatif/{_locale}", name="recapitulatif")
+     * @Route("/{_locale}/recapitulatif/", name="recapitulatif")
      * @Method({"GET"})
      * requirements={"_locale": "en|fr"}
      */
@@ -79,6 +84,12 @@ class BilletterieController extends Controller
     {
         $commande = $this->get('app.commande.manager')->getCommande();
         $this->get('app.commande.manager')->setCommandeTotal($commande);
+
+        if ($commande === false)
+        {
+            return $this->redirectToRoute('homepage');
+        }
+
 
         if ($commande->getTotal() == 0)
         {
@@ -147,7 +158,7 @@ class BilletterieController extends Controller
 
 
     /**
-     * @Route("/validation/{_locale}/{code}", name="validation")
+     * @Route("/{_locale}/validation/{code}", name="validation")
      * @Method({"GET"})
      * requirements={"_locale": "en|fr"}
      */
@@ -169,7 +180,7 @@ class BilletterieController extends Controller
     {
         if($language != null)
         {
-            // On enregistre la langue en session
+            // La locale en session
             $this->get('session')->set('_locale', $language);
         }
 

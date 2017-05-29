@@ -19,10 +19,11 @@
 </head>
 
 <body>
-{% block header %}
+
+
 
 <div class="container" id="layout">
-
+    {% block header %}
     <header>
 
         <nav class="navbar navbar-inverse" role="navigation">
@@ -30,7 +31,6 @@
             <div class="navbar-header">
 
                 <p><img src="{{ asset('images/logo.jpg') }}" title="Site du Louvre" alt="Logo" id="logo"></p>
-
 
                 <button type="button" class="navbar-toggle"
                         data-toggle="collapse"
@@ -40,44 +40,36 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+
             </div>
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
 
                     <li>
-                        <a class="flag" href="{{ path('setLocale', {'language': 'fr'}) }}"><img src="{{ asset('images/fr.png') }}" title="fr" alt="frflag"
-                                                     id="frflag"></a>
+                        <a class="flag" href="{{ path('setLocale', {'language': 'fr'}) }}"><img src="{{ asset('images/fr.png') }}" title="fr" alt="frflag" id="frflag"></a>
                     </li>
-
                     <li>
-                        <a class="flag" href="{{ path('setLocale', {'language': 'en'} )  }}"><img src="{{ asset('images/uk.png') }}" title="en" alt="ukflag"
-                                                     id="enflag"></a>
-                    </li> <li>
-                        <a class="home" href="{{ path('homepage') }}"><img src="{{ asset('images/home.png') }}" title="home" alt="home"
-                                                     id="home"></a>
+                        <a class="flag" href="{{ path('setLocale', {'language': 'en'} )  }}"><img src="{{ asset('images/uk.png') }}" title="en" alt="ukflag" id="enflag"></a>
                     </li>
-
-
+                    <li>
+                        <a class="home" href="{{ path('homepage') }}"><img src="{{ asset('images/home.png') }}" title="home" alt="home" id="home"></a>
+                    </li>
 
                 </ul>
 
             </div>
+
         </nav>
 
     </header>
 
-
-
-
     {% endblock %}
-
-    {% for flash_message in app.session.flashBag.get('notice') %}
-
-    {% endfor %}
 
 
     {% block body %}
     {% endblock %}
+
 
     {% block footer %}
 
@@ -107,3 +99,4 @@
 
 
 </body>
+</html>

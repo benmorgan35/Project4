@@ -54,8 +54,8 @@ class CommandeType extends AbstractType
                 )
             ))
 
-            ->add('email', EmailType::class);
-
+            ->add('email', EmailType::class)
+            ->add('Poursuivre', SubmitType::class);
     }
     
     /**

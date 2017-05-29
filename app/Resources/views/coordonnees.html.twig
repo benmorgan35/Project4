@@ -29,7 +29,7 @@
                 </p>
                 <p style="margin-left:40px;">
                     <i>
-                    {{ "Date de votre visite :"|trans }} {{ commande.dateVisit|date('d/m/Y') }}<br/>
+                    {{ "Date de votre visite :"|trans }} {{ commande.dateVisit|localizeddate('full', 'none') }}<br/>
                         {{ "Type de billet :"|trans }}
                         {% if commande.ticketType %}
                         {{ "Journée complète"|trans }}
@@ -144,9 +144,9 @@
                         <div class="form-group" id="forminput">
                             <div class="formcoordonnees">
 
-                                <a class="btn btn-primary pull-left" href="{{ path('homepage') }}" role="button">{{ "Retour"|trans }}</a>
+                                <a class="btn btn-primary pull-left" id="Retour" href="{{ path('homepage') }}" role="button">{{ "Retour"|trans }}</a>
 
-                                <input type="submit" value="{{ "Poursuivre"|trans }}" class="btn btn-primary pull-right"/>
+                                <input type="submit" id="submit" value="{{ "Poursuivre"|trans }}" class="btn btn-primary pull-right"/>
                             </div>
                         </div>
                     </div>

@@ -190,6 +190,12 @@ hr{
 
 /* --------------------------------------------------- */
 
+#appbundle_commande_Poursuivre{
+    margin-bottom: 50px;
+
+}
+
+
 #appbundle_commande_ticketType{
     width: 240px;
 }

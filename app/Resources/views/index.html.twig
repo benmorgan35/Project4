@@ -24,60 +24,56 @@
             <p>{{ "Choisissez un jour de visite"|trans }}</p>
         </div>
 
-
         {{ form_start(form, {'attr': {'class': 'form-horizontal' }}) }}
         {{ form_errors(form) }}
 
-
         <div class="fondblanc">
-        <div class="form-group">
-        <div class="formulaire">
+            <div class="form-group">
+                <div class="formulaire">
 
-                {{ form_label(form.dateVisit, "Jour de visite") }}
-                {{ form_widget(form.dateVisit, {'attr':{'placeholder':'Sélectionner une date', 'readonly': 'readonly'}}) }}
-                {{ form_errors(form.dateVisit) }}
-        </div>
-        </div>
+                    {{ form_label(form.dateVisit, "Jour de visite") }}
+                    {{ form_widget(form.dateVisit, {'attr':{'placeholder':'Sélectionner une date', 'readonly': 'readonly'}}) }}
+                    {{ form_errors(form.dateVisit) }}
+                </div>
+            </div>
         </div>
 
 
         <div class="sousetape">
             <p>{{  "Choisissez un type de billet (journée complète ou demi-journée)"|trans}}</p>
-
         </div>
 
         <div class="fondblanc">
 
 
-        <div class="form-group">
-        <div class="formulaire"><p>{{ "Si vous souhaitez commander un billet pour le jour-même, seul le billet demi-journée vous est proposé à partir de 14 heures."|trans }}</p>
-            {{ form_label(form.ticketType, "Type de billet") }}
-            {{ form_errors(form.ticketType) }}
-            {{ form_widget(form.ticketType,{'attr':{'class':'ticketType'}}) }}
-        </div>
-        </div>
+            <div class="form-group">
+                <div class="formulaire"><p>{{ "Si vous souhaitez commander un billet pour le jour-même, seul le billet demi-journée vous est proposé à partir de 14 heures."|trans }}</p>
+                    {{ form_label(form.ticketType, "Type de billet") }}
+                    {{ form_errors(form.ticketType) }}
+                    {{ form_widget(form.ticketType,{'attr':{'class':'ticketType'}}) }}
+                </div>
+            </div>
+
+
         </div>
 
         <div class="sousetape">
             <p>{{ "Choisissez un nombre de billet(s)"|trans }}</p>
-
         </div>
 
         <div class="fondblanc">
             <div class="form-group">
                 <div class="formulaire"> <p>{{ "Au-delà de 10 billets, Merci de contacter le musée."|trans }}</p>
-            {{ form_label(form.ticketsNumber, "Nombre de billet(s)") }}
-            {{ form_widget(form.ticketsNumber) }}
-            {{ form_errors(form.ticketsNumber) }}
-        </div>
-        </div>
+                    {{ form_label(form.ticketsNumber, "Nombre de billet(s)") }}
+                    {{ form_widget(form.ticketsNumber) }}
+                    {{ form_errors(form.ticketsNumber) }}
+                </div>
+            </div>
         </div>
 
 
         <div class="sousetape">
-            <p>
-                {{ "Vos billets vous seront adressés par mail."|trans }} <br />{{ "Veuillez indiquer une adresse mail valide."|trans }}</p>
-
+            <p>{{ "Vos billets vous seront adressés par mail."|trans }} <br />{{ "Veuillez indiquer une adresse mail valide."|trans }}</p>
         </div>
 
         <div class="fondblanc">
@@ -86,7 +82,6 @@
                     {{ form_label(form.email, "email") }}
                     {{ form_widget(form.email, {'attr':{'placeholder':'you@exemple.com'}}) }}
                     {{ form_errors(form.email) }}
-
                 </div>
            </div>
         </div>
@@ -94,8 +89,10 @@
         <div class="fondblanc">
             <div class="form-group">
                 <div class="formulaire">
-                    <input type="reset" value="{{ "Annuler"|trans }}" class="btn btn-primary pull-left"/>
-                    <input type="submit" value="{{ "Poursuivre"|trans }}" class="btn btn-primary pull-right"/>
+
+                        {{ form_widget(form.Poursuivre, {'attr': {'class': 'btn btn-primary pull-right'}})  }}
+
+
                 </div>
             </div>
         </div>
@@ -103,6 +100,7 @@
         {{ form_end(form) }}
 
     </div>
+
     <div id="colonne" class="col-sm-4">
         {{ include ('::_information.html.twig') }}
     </div>

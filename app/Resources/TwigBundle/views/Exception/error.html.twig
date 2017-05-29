@@ -8,35 +8,24 @@
 
 
 
-    <div class="enteteerreur"></div>
-    {# I. début row 1------------------------------------------------------------------------- #}
-    <div class="row" id="rangee">
-
-        {# I.1 début col row page 1/2................................................................. #}
-        <div id="colonne" class="col-sm-12">
-
-            <div class="etape">
-                <h2>Page d'erreur</h2>
-
-            </div>
-
-            <div class="fondnoir">
-
-                <div class="erreur">
-                    <p style="font-size: 50px; margin-bottom: 50px;">Oops ! Désolés...</p>
-                    <p>Une erreur s'est produite.</p>
-                    <p>"{{ status_code }} {{ status_text }}".</p>
-                    <p>Nous vous prions de nous excuser pour la gène occasionnée.</p>
-                    <p>Nous vous invitons à revenir à la <a href="{{ path('homepage') }}">page d'accueil</a></p>
-
+    <div class="enteteerreur">
+        <div class="row" id="rangee">
+            <div id="colonne" class="col-sm-12">
+                <div class="etape">
+                    <h2>Page d'erreur</h2>
                 </div>
-
+                <div class="fondnoir">
+                    <div class="erreur">
+                        <p style="font-size: 50px; margin-bottom: 50px;">Oops ! Désolés...</p>
+                        <p>Une erreur s'est produite.</p>
+                        <p>"{{ status_code }} {{ status_text }}".</p>
+                        <p>Nous vous prions de nous excuser pour la gène occasionnée.</p>
+                        <p>Nous vous invitons à revenir à la <a href="{{ path('homepage') }}">page d'accueil</a></p>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
-
-
 
 
 
