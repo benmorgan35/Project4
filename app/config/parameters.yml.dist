@@ -19,4 +19,4 @@ parameters:
     stripe_private_key: sk_test_2ctegkL1ZQXY1vuk23xi8C9Y
 
     # A secret key that's used to generate certain security-related tokens
-    secret: ThisTokenIsNotSoSecretChangeIt
+    secret: 67bc87a2814b7d543f6c4618540d277abc9586cd

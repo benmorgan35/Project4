@@ -169,6 +169,7 @@ class BilletterieController extends Controller
      * @return array
      *
      * @Route("/{language}", name="setLocale")
+     * @Method({"GET"})
      */
     public function setLocaleAction(Request $request, $language = null)
     {
