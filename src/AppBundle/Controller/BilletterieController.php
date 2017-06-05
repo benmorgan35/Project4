@@ -132,7 +132,7 @@ class BilletterieController extends Controller
             $this->get('app.commande.manager')->flushAndRemoveSession($commande);
 
             $message = \Swift_Message::newInstance()
-                ->setSubject('Votre commande - Billetterie du Louvre')
+                ->setSubject('Billetterie du Louvre')
                 ->setFrom(array('ben.guiriec@gmail.com' => 'Musée du Louvre'))
                 ->setTo($commande->getEmail())
                 ->setBody(
@@ -173,6 +173,7 @@ class BilletterieController extends Controller
      *
      * @Route("/{language}", name="setLocale")
      * @Method({"GET"})
+     * requirements={"_locale": "en|fr"}
      */
     public function setLocaleAction(Request $request, $language = null)
     {
@@ -182,7 +183,7 @@ class BilletterieController extends Controller
             $this->get('session')->set('_locale', $language);
         }
 
-        return $this->redirectToRoute('homepage');
+        return $this->redirectToRoute('homepage', array('_locale' => $language));
     }
 
 

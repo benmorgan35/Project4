@@ -186,7 +186,7 @@ class CommandeManager extends Controller
         $date = $commande->getDate();
         $arobase ="@";
 
-        $date = date('Ymd-His');
+        $date = date('Ymd');
         $code = 0;
 
         $carMail = substr($email, 0, strpos($email, $arobase));

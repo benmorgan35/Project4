@@ -310,4 +310,16 @@ class Commande
     {
         return $this->tickets;
     }
+
+    /**
+     * @param mixed $tickets
+     */
+    public function setTickets($tickets)
+    {
+        $this->tickets = $tickets;
+
+        return $this;
+    }
+
+
 }
