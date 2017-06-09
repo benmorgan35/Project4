@@ -64,21 +64,17 @@ class CommandeManagerTest extends WebTestCase
         $commandeManager = $client-> getContainer()->get('app.commande.manager');
         $commande = new Commande();
         $commande->setEmail('pierre.dupond@gmail.com');
-        $commande->setDate(new \DateTime('2017-06-05'));
+        $commande->setDate(new \DateTime('2017-06-09'));
         $commandeManager->setCode($commande);
-        $this->assertEquals('ML-20170605-pierre.dupond', $commande->getCode());
+        $this->assertEquals('ML-20170609-pierre.dupond', $commande->getCode());
     }
 
     public function testGetCommande()
     {
         $client = self::createClient();
         $commandeManager = $client-> getContainer()->get('app.commande.manager');
-        $commande = new Commande();
-        $commande->setDateVisit(new \DateTime('2017-05-10'));
-        $commande->setTicketType(true);
-        $commande->setEmail('pierre.dupond@gmail.com');
-        $commandeManager->getCommande();
-        $this->assertNotNull($commande);
+        $commande = $commandeManager->getCommande();
+        $this->assertFalse($commande);
     }
 
     public function testSaveCommande()
