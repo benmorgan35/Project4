@@ -45,7 +45,8 @@ class Commande
      * @var \DateTime
      *
      * @ORM\Column(name="dateVisit", type="date")
-     * @Assert\NotNull(message="Veuillez sélectionner une date")
+     * @Assert\NotNull(message="Veuillez sélectionner une date.")
+     * @Assert\GreaterThanOrEqual("today", message="Veuillez choisir une date valide.")
      * @Assert\Date()
      * @LimitTickets()
      */

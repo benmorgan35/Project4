@@ -58,15 +58,16 @@ class CommandeManagerTest extends WebTestCase
         $this->assertEquals(6, count($commande->getTickets()));
     }
 
+
     public function testSetCode()
     {
         $client = self::createClient();
         $commandeManager = $client-> getContainer()->get('app.commande.manager');
         $commande = new Commande();
         $commande->setEmail('pierre.dupond@gmail.com');
-        $commande->setDate(new \DateTime('2017-06-09'));
+        $date = date('Ymd-His');
         $commandeManager->setCode($commande);
-        $this->assertEquals('ML-20170609-pierre.dupond', $commande->getCode());
+        $this->assertEquals('ML-' . $date . '-pierre.dupond', $commande->getCode());
     }
 
     public function testGetCommande()
